@@ -4,4 +4,6 @@
   - @project.issues.each do |issue|
     %li.well
       %h3= issue.title
-      %p= issue.body
+      %p
+        :markdown
+          #{issue.body}
