@@ -8,6 +8,10 @@ class Issue < ActiveRecord::Base
 
   validates :title, :presence => true
 
+  state_machine :state, :initial => :icebox do
+
+  end
+
   def github_issue(current_user)
     issues = Github::Issues.new(oauth_token: current_user.github_token)
     @response = issues.get project.owner, project.name, number
@@ -15,13 +19,13 @@ class Issue < ActiveRecord::Base
 
   def create_github_issue(current_user)
     issues = Github::Issues.new(oauth_token: current_user.github_token)
-    @response = issues.create project.owner, project.name, title: title, body: body
+    @response = issues.create project.owner, project.name, title: title, body: body, labels: [state]
     update_from_github_response
   end
 
   def update_github_issue(current_user)
     issues = Github::Issues.new(oauth_token: current_user.github_token)
-    @response = issues.edit project.owner, project.name, number, title: title, body: body
+    @response = issues.edit project.owner, project.name, number, title: title, body: body, labels: [state]
     update_from_github_response
   end
 
@@ -35,7 +39,7 @@ class Issue < ActiveRecord::Base
     self.github_updated_at = @response.updated_at.try(:to_datetime)
     self.milestone = @response.milestone
     self.number = @response.number
-    self.state = @response.state
+    self.github_state = @response.state
     self.title = @response.title
     save!
   end

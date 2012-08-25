@@ -8,6 +8,13 @@ class Project < ActiveRecord::Base
     user.github.issues.list_repo owner, name
   end
 
+  def create_labels
+    labels = user.github.issues.labels.all(owner, name).map(&:name)
+    ["icebox"].each do |label|
+      user.github.issues.labels.create owner, name, name: label, color: "ededed" unless labels.include?(label)
+    end
+  end
+
   def import_issues
     result = user.github.issues.list_repo owner, name
     result.each do |github_issue|
@@ -19,7 +26,7 @@ class Project < ActiveRecord::Base
         issue.github_updated_at = github_issue["updated_at"].try(:to_datetime)
         issue.milestone = github_issue["milestone"]
         issue.number = github_issue["number"]
-        issue.state = github_issue["state"]
+        issue.github_state = github_issue["state"]
         issue.title = github_issue["title"]
       end
     end
