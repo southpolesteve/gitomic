@@ -6,8 +6,8 @@
 %ul.sortable.unstyled
   - @issues.each do |issue|
     %li.well
-      %h3= issue.title
-      %h4= issue.number
-      = link_to "Edit Issue", edit_project_issue_path( @project,issue)
-      :markdown
-        #{issue.body}
+      %p 
+        #{issue.number} #{issue.title}
+        = link_to "Edit Issue", edit_project_issue_path(@project,issue)
+        :markdown
+          #{issue.body}
