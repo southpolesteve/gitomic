@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :provider, :uid, :name, :email, :avatar
 
   has_many :projects
+  has_many :issues
 
   def self.create_with_omniauth(auth)
     create! do |user|
