@@ -5,6 +5,6 @@
 
 %ul.sortable.unstyled
   - @issues.each do |issue|
-  %li
-    = issue.number
-    = link_to issue.title , edit_project_issue_path(@project,issue)
+    %li
+      = issue.number
+      = link_to issue.title , edit_project_issue_path(@project,issue)
