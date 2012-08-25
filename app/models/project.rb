@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   attr_accessible :name, :owner
 
   belongs_to :user
-  has_many :issues
+  has_many :issues, :dependent => :delete_all
 
   def github_issues
     user.github.issues.list_repo owner, name
