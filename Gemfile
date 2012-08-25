@@ -22,3 +22,5 @@ gem "sendgrid", ">= 1.0.1"
 gem "omniauth", ">= 1.1.0"
 gem "omniauth-github"
 gem "simple_form"
+gem "pry-rails"
+gem 'quiet_assets', :group => :development

@@ -74,3 +74,6 @@ pickle-email-*.html
 
 # vim artifacts
 **.swp
+
+# Credentials File
+/config/initializers/credentials.rb
