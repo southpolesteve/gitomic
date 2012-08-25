@@ -1,5 +1,9 @@
 class ProjectsController < ApplicationController
 
+  def index
+    @projects = current_user.projects
+  end
+
   def create
     owner = params[:full_name].split("/")[0]
     name = params[:full_name].split("/")[1]

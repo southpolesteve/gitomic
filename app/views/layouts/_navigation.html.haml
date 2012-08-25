@@ -2,7 +2,7 @@
 %ul.nav
   - if user_signed_in?
     %li
-      Logged in as #{current_user.name}
+      = link_to "Projects", projects_path
     %li
       = link_to 'Logout', signout_path
   - else

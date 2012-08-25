@@ -1,7 +1,7 @@
 %h1= @project.owner
 %h2= @project.name
-.sortable
+%ul.sortable.unstyled
   - @project.issues.each do |issue|
-    .well
+    %li.well
       %h3= issue.title
       %p= issue.body
