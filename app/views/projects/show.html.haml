@@ -1,8 +1,13 @@
 %h1= @project.owner
 %h2= @project.name
+
+= link_to "New Issue", new_project_issue_path(@project), :class => "btn"
+
 %ul.sortable.unstyled
-  - @project.issues.each do |issue|
+  - @issues.each do |issue|
     %li.well
       %h3= issue.title
+      %h4= issue.number
+      = link_to "Edit Issue", edit_project_issue_path( @project,issue)
       :markdown
         #{issue.body}
