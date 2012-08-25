@@ -3,4 +3,23 @@ class Issue < ActiveRecord::Base
 
   belongs_to :project
 
+  def update_from_github(user)
+    issue = github_issue(user)
+    self.body = issue["body"]
+    self.closed_at = issue["closed_at"].try(:to_datetime)
+    self.github_created_at = issue["created_at"].try(:to_datetime)
+    self.github_id = issue["github_id"]
+    self.github_updated_at = issue["updated_at"].try(:to_datetime)
+    self.milestone = issue["milestone"]
+    self.number = issue["number"]
+    self.state = issue["state"]
+    self.title = issue["title"]
+    save!
+  end
+
+  def github_issue(user)
+    issues = Github::Issues.new(oauth_token: user.github_token)
+    issues.get project.owner, project.name, number
+  end
+
 end
