@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
          user.email = auth['info']['email']
          user.avatar = auth['info']['image']
          user.github_token = auth['credentials']['token']
-         binding.pry
+         user.github_login = auth['extra']['raw_info']['login']
       end
     end
   end
