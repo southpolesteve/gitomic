@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120825060025) do
+ActiveRecord::Schema.define(:version => 20120825164316) do
 
   create_table "issues", :force => true do |t|
     t.string   "state"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20120825060025) do
     t.datetime "updated_at",   :null => false
     t.string   "avatar"
     t.string   "github_token"
+    t.string   "github_login"
   end
 
 end
