@@ -3,5 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $( ".sortable" ).sortable()
+  $( ".sortable" ).sortable({
+    connectWith: ".sortable"
+    })
   $( ".sortable" ).disableSelection()

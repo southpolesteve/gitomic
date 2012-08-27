@@ -9,6 +9,14 @@ class Issue < ActiveRecord::Base
   validates :title, :presence => true
 
   state_machine :state, :initial => :icebox do
+    
+    event :move_to_backlog do
+      transition all => :backlog
+    end
+    
+    event :move_to_icebox do
+      transition all => :icebox
+    end
 
   end
 

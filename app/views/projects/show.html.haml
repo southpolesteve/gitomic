@@ -1,10 +1,14 @@
-%h1= @project.owner
-%h2= @project.name
+%h1 #{@project.owner}/#{@project.name}
 
 = link_to "New Issue", new_project_issue_path(@project), :class => "btn"
 
-%ul.sortable.unstyled
-  - @issues.each do |issue|
-    %li
-      = issue.number
-      = link_to issue.title , edit_project_issue_path(@project,issue)
+.row
+  - @issues.group_by(&:state).each do |state, issues|
+    .span4
+      %h3= state
+      %ul.sortable.unstyled{:id => state}
+        - issues.each do |issue|
+          %li{:id => "issue_#{issue.id}"}
+            = issue.number
+            = link_to issue.title , edit_project_issue_path(@project,issue)
+    
