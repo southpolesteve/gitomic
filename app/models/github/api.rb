@@ -44,9 +44,17 @@ module Github
     def create_issue( owner, repo, params )
       @last_response = self.class.post "/repos/#{owner}/#{repo}/issues", :body => params.to_json
     end
-    
+
     def create_label( owner, repo, params )
       @last_response = self.class.post "/repos/#{owner}/#{repo}/labels", :body => params.to_json
+    end
+
+    def update_issue
+      #WIP
+    end
+
+    def create_comment
+      #WIP
     end
 
     def rate_limit
