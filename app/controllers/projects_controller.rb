@@ -9,8 +9,8 @@ class ProjectsController < ApplicationController
     name = params[:full_name].split("/")[1]
     @project = current_user.projects.where(owner: owner, name: name).first || current_user.projects.new(owner: owner, name: name)
     if @project.persisted? || @project.save
-      @project.import_issues
-      @project.create_labels
+      @project.import_github_issues
+      @project.setup_github_labels
       redirect_to @project
     else
       flash[:error] = "There was an error importing that project to MurfHub"

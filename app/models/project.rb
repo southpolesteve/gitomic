@@ -4,11 +4,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   has_many :issues, :dependent => :delete_all
 
-  def github_issues
-    user.github.issues.list_repo owner, name
-  end
-
-  def create_labels
+  def setup_github_labels
     labels = user.github.labels(owner, name).map(&:name)
     default_labels = [
       { :name => "icebox", :color => "FFFF66" },
@@ -20,10 +16,10 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def import_issues
-    result = user.github.issues owner, name
-    result.each do |github_issue|
-      Issue.create_from_github(github_issue)
+  def import_github_issues
+    github_issues = user.github.issues owner, name
+    github_issues.each do |github_issue|
+      github_issue.import
     end
     self
   end
