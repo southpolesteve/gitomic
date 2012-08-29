@@ -6,6 +6,9 @@ class Issue < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
+  scope :icebox, where('state IS NULL OR state = ?', "icebox")
+  scope :backlog, where(state: "backlog")
+
   validates :title, :presence => true
 
   delegate :owner, :name, :to => :project, :prefix => true
