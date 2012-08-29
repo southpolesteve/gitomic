@@ -30,10 +30,16 @@ class IssuesController < ApplicationController
     if @issue.save
       @issue.update_github(current_user)
       flash[:notice] = "Issue updated!"
-      redirect_to @project
+      respond_to do |format|
+        format.html { redirect_to @project }
+        format.js
+      end
     else
       flash[:error] = "This issue could not be updated"
-      render :edit
+      respond_to do |format|
+        format.html { render :edit }
+        format.js
+      end
     end
   end
 

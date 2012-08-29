@@ -6,15 +6,9 @@
   .span4
     %h3 Backlog
     %ul.sortable.unstyled{:id => "backlog"}
-      - @backlog.each do |issue|
-        %li{:id => "issue_#{issue.id}"}
-          = issue.number
-          = link_to issue.title , edit_project_issue_path(@project,issue)
+      = render @backlog
   .span4
     %h3 Icebox
     %ul.sortable.unstyled{:id => "icebox"}
-      - @icebox.each do |issue|
-        %li{:id => "issue_#{issue.id}"}
-          = issue.number
-          = link_to issue.title , edit_project_issue_path(@project,issue)
+      = render @icebox
     

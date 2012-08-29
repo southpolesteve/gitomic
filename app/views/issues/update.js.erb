@@ -1,0 +1,1 @@
+$("li[data-id='<%= @issue.id %>']").replaceWith("<%= escape_javascript(render "issue", :issue => @issue) %>")

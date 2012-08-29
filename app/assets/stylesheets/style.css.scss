@@ -7,4 +7,10 @@ ul.sortable{
   background-color: #eeeeee;
   @include border-radius(5px);
   padding: 10px 10px;
+
+  li{
+    border: solid 1px #dddddd;
+    padding: 5px 5px;
+    margin: 2px 2px;
+  }
 }
