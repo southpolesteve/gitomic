@@ -43,14 +43,16 @@ module Github
 
     def create_issue(owner, repo, params)
       @last_response = self.class.post "/repos/#{owner}/#{repo}/issues", :body => params.to_json
+      Github::Issue.new(owner,repo, @last_response).import
     end
 
     def create_label(owner, repo, params)
       @last_response = self.class.post "/repos/#{owner}/#{repo}/labels", :body => params.to_json
     end
 
-    def update_issue
-      #WIP
+    def update_issue(owner, repo, number, params)
+      @last_response = self.class.patch "/repos/#{owner}/#{repo}/issues/#{number}", :body => params.to_json
+      Github::Issue.new(owner,repo, @last_response).import
     end
 
     def create_comment
