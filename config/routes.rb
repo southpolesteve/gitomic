@@ -1,5 +1,7 @@
 Murfhub::Application.routes.draw do
   
+  get "list/update"
+
   resources :projects do 
     resources :issues
   end
