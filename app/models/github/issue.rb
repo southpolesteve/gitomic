@@ -19,6 +19,16 @@ module Github
       @title = data["title"]
     end
 
+    def self.create(user, owner, repo, data)
+      github = Github::API.new(user)
+      github.create_issue owner, repo, data
+    end
+
+    def self.update(user, owner, repo, number, data)
+      github = Github::API.new(user)
+      github.update_issue owner, repo, number, data
+    end
+
     def import
       i = issue
       attributes_map.except(:number).each do |key, value|
