@@ -1,9 +1,11 @@
 module Github
   class Label
 
-    attr_accessor :color, :name
+    attr_accessor :color, :name, :owner, :repo
 
-    def initialize(data)
+    def initialize owner,repo,data 
+      @owner = owner
+      @repo = repo
       @color = data["color"]
       @name = data["name"]
     end
