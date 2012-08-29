@@ -19,15 +19,15 @@ class User < ActiveRecord::Base
   end
 
   def github
-    Github.new :oauth_token => github_token
+    Github::API.new(self)
   end
 
   def repos
-    github.repos.list
+    github.repos
   end
 
   def orgs
-    github.orgs.list
+    github.orgs
   end
 
 end

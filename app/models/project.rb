@@ -9,26 +9,21 @@ class Project < ActiveRecord::Base
   end
 
   def create_labels
-    labels = user.github.issues.labels.all(owner, name).map(&:name)
-    ["icebox"].each do |label|
-      user.github.issues.labels.create owner, name, name: label, color: "ededed" unless labels.include?(label)
+    labels = user.github.labels(owner, name).map(&:name)
+    default_labels = [
+      { :name => "icebox", :color => "FFFF66" },
+      { :name => "backlog", :color => "66CCFF" } 
+    ]
+
+    default_labels.each do |label|
+      user.github.create_label owner, name, name: label[:name], color: label[:color]
     end
   end
 
   def import_issues
-    result = user.github.issues.list_repo owner, name
+    result = user.github.issues owner, name
     result.each do |github_issue|
-      issues.create! do |issue|
-        issue.body = github_issue["body"]
-        issue.closed_at = github_issue["closed_at"].try(:to_datetime)
-        issue.github_created_at = github_issue["created_at"].try(:to_datetime)
-        issue.github_id = github_issue["github_id"]
-        issue.github_updated_at = github_issue["updated_at"].try(:to_datetime)
-        issue.milestone = github_issue["milestone"]
-        issue.number = github_issue["number"]
-        issue.github_state = github_issue["state"]
-        issue.title = github_issue["title"]
-      end
+      Issue.create_from_github(github_issue)
     end
     self
   end
