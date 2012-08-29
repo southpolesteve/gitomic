@@ -24,6 +24,6 @@ gem "omniauth-github"
 gem "simple_form"
 gem "pry-rails"
 gem 'quiet_assets', :group => :development
-gem "github_api"
 gem "bluecloth"
 gem "state_machine"
+gem "httparty"
