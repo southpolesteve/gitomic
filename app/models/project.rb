@@ -6,10 +6,6 @@ class Project < ActiveRecord::Base
 
   def setup_github_labels
     labels = user.github.labels(owner, name).map(&:name)
-    default_labels = [
-      { :name => "icebox", :color => "FFFF66" },
-      { :name => "backlog", :color => "66CCFF" } 
-    ]
 
     default_labels.each do |label|
       user.github.create_label owner, name, name: label[:name], color: label[:color]
@@ -22,6 +18,15 @@ class Project < ActiveRecord::Base
       github_issue.import
     end
     self
+  end
+
+  private
+
+  def default_labels
+    [
+      { :name => "icebox", :color => "FFFF66" },
+      { :name => "backlog", :color => "66CCFF" } 
+    ]
   end
 
 end
