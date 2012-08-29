@@ -8,16 +8,21 @@ class Issue < ActiveRecord::Base
 
   validates :title, :presence => true
 
-  state_machine :state, :initial => :icebox do
-    
-    event :move_to_backlog do
-      transition all => :backlog
-    end
-    
-    event :move_to_icebox do
-      transition all => :icebox
-    end
+  delegate :owner, :name, :to => :project, :prefix => true
 
+
+  def update_github(user)
+    if new_record?
+      Github::Issue.create(user, project_owner, project_name, github_params)
+    else
+      Github::Issue.update(user, project_owner, project_name, number, github_params)
+    end
+  end
+
+  def github_params
+    { :body => body,
+      :title => title,
+    }
   end
 
 end
