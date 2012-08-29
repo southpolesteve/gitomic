@@ -1,0 +1,10 @@
+@import "bootstrap";
+body { padding-top: 60px; }
+@import "bootstrap-responsive";
+
+ul.sortable{
+  min-height: 50px;
+  background-color: #eeeeee;
+  @include border-radius(5px);
+  padding: 10px 10px;
+}
