@@ -23,29 +23,29 @@ module Github
       raise "WIP"
     end
 
-    def labels( owner, repo )
+    def labels(owner, repo)
       array = []
       @last_response = self.class.get "/repos/#{owner}/#{repo}/labels"
       @last_response.each do |data|
-        array << Github::Label.new(data)
+        array << Github::Label.new(owner, repo, data)
       end
       array
     end
 
-    def issues( owner, repo )
+    def issues(owner, repo)
       array = []
       @last_response = self.class.get "/repos/#{owner}/#{repo}/issues"
       @last_response.each do |data|
-        array << Github::Issue.new(data)
+        array << Github::Issue.new(owner, repo, data)
       end
       array
     end
 
-    def create_issue( owner, repo, params )
+    def create_issue(owner, repo, params)
       @last_response = self.class.post "/repos/#{owner}/#{repo}/issues", :body => params.to_json
     end
 
-    def create_label( owner, repo, params )
+    def create_label(owner, repo, params)
       @last_response = self.class.post "/repos/#{owner}/#{repo}/labels", :body => params.to_json
     end
 
