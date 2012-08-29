@@ -7,10 +7,10 @@ class IssuesController < ApplicationController
 
   def create
     @project = current_user.projects.find(params[:project_id])
-    @issue = @project.issues.new(params[:issue].merge(:user => current_user))
+    @issue = @project.issues.new(issue_params.merge(:user => current_user))
     if @issue.save
+      @issue.update_github(current_user)
       flash[:notice] = "Issue created!"
-      @issue.create_github_issue(current_user)
       redirect_to @project
     else
       flash[:error] = "This issue could not be created"
@@ -26,15 +26,21 @@ class IssuesController < ApplicationController
   def update
     @project = current_user.projects.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
-    @issue.update_attributes(params[:issue])
+    @issue.update_attributes(issue_params)
     if @issue.save
+      @issue.update_github(current_user)
       flash[:notice] = "Issue updated!"
-      @issue.update_github_issue(current_user)
       redirect_to @project
     else
       flash[:error] = "This issue could not be updated"
       render :edit
     end
+  end
+
+  private
+
+  def issue_params
+    params.require(:issue).permit(:title, :body)
   end
 
 end
