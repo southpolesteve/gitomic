@@ -27,3 +27,4 @@ gem 'quiet_assets', :group => :development
 gem "bluecloth"
 gem "state_machine"
 gem "httparty"
+gem "rails_best_practices", :group => :development
