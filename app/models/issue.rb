@@ -18,11 +18,19 @@ class Issue < ActiveRecord::Base
 
 
   def update_github(user)
-    if new_record?
-      Github::Issue.create(user, project_owner, project_name, github_params)
-    else
       Github::Issue.update(user, project_owner, project_name, number, github_params)
+    if github_params_changed?
+      if new_record?
+      else
+      end
     end
+  end
+
+  def github_params_changed?
+    github_params.each do |k,v|
+      return true if self.send("#{k}_changed?")
+    end
+    false
   end
 
   def github_params
