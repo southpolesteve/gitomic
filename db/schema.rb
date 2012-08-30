@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120825210128) do
+ActiveRecord::Schema.define(:version => 20120830025543) do
 
   create_table "issues", :force => true do |t|
     t.string   "state"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20120825210128) do
     t.datetime "updated_at",        :null => false
     t.string   "user_id"
     t.string   "github_state"
+    t.integer  "priority"
   end
 
   add_index "issues", ["project_id"], :name => "index_issues_on_project_id"
