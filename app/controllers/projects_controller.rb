@@ -20,8 +20,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = current_user.projects.find(params[:id])
-    @backlog = @project.issues.backlog
-    @icebox = @project.issues.icebox
+    @backlog = @project.ranked_backlog
+    @icebox = @project.ranked_icebox
   end
 
 

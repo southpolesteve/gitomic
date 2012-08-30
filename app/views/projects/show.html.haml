@@ -5,10 +5,10 @@
 .row
   .span4
     %h3 Backlog
-    %ul.sortable.unstyled{:id => "backlog"}
+    %ul.sortable.unstyled{:id => "backlog", :data => { :project_id => @project.id }}
       = render @backlog
   .span4
     %h3 Icebox
-    %ul.sortable.unstyled{:id => "icebox"}
+    %ul.sortable.unstyled{:id => "icebox", :data => { :project_id => @project.id }}
       = render @icebox
     

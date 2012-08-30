@@ -1,7 +1,10 @@
 class Issue < ActiveRecord::Base
+  include RankedModel
+
   attr_accessible :body, :closed_at, :github_created_at, 
                   :github_id, :github_updated_at, :milestone, 
-                  :number, :state, :title, :user
+                  :number, :state, :title, :user, :icebox_priority_position, 
+                  :backlog_priority_position
 
   belongs_to :project
   belongs_to :user
@@ -18,10 +21,11 @@ class Issue < ActiveRecord::Base
 
 
   def update_github(user)
-      Github::Issue.update(user, project_owner, project_name, number, github_params)
     if github_params_changed?
       if new_record?
+        Github::Issue.create(user, project_owner, project_name, github_params)
       else
+        Github::Issue.update(user, project_owner, project_name, number, github_params)
       end
     end
   end

@@ -27,18 +27,22 @@ class IssuesController < ApplicationController
     @project = current_user.projects.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
     @issue.update_attributes(issue_params)
-    if @issue.save
+    if @issue.save!
       @issue.update_github(current_user)
-      flash[:notice] = "Issue updated!"
       respond_to do |format|
-        format.html { redirect_to @project }
-        format.js
+        format.html do
+          flash[:notice] = "Issue updated!"
+          redirect_to @project
+        end
+        format.js { render :js => "console.log('success');" }
       end
     else
-      flash[:error] = "This issue could not be updated"
       respond_to do |format|
-        format.html { render :edit }
-        format.js
+        format.html do
+          flash[:error] = "This issue could not be updated"
+          render :edit
+        end
+        format.js { render :js => "console.log('error');" }
       end
     end
   end
@@ -46,7 +50,7 @@ class IssuesController < ApplicationController
   private
 
   def issue_params
-    params.require(:issue).permit(:title, :body)
+    params.require(:issue).permit(:title, :body, :state, :icebox_priority_position, :backlog_priority_position)
   end
 
 end

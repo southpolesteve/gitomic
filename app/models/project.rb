@@ -20,6 +20,14 @@ class Project < ActiveRecord::Base
     self
   end
 
+  def ranked_icebox
+    issues.icebox.rank(:icebox_priority)
+  end
+
+  def ranked_backlog
+    issues.backlog.rank(:backlog_priority)
+  end
+
   private
 
   def default_labels
