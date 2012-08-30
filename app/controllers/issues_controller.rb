@@ -8,8 +8,8 @@ class IssuesController < ApplicationController
   def create
     @project = current_user.projects.find(params[:project_id])
     @issue = @project.issues.new(issue_params.merge(:user => current_user))
+    @issue = @issue.update_github(current_user) if @issue.valid?
     if @issue.save
-      @issue.update_github(current_user)
       flash[:notice] = "Issue created!"
       redirect_to @project
     else
@@ -26,9 +26,9 @@ class IssuesController < ApplicationController
   def update
     @project = current_user.projects.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
-    @issue.update_attributes(issue_params)
-    if @issue.save!
-      @issue.update_github(current_user)
+    @issue.attributes = issue_params 
+    @issue.update_github(current_user) if @issue.valid?
+    if @issue.save
       respond_to do |format|
         format.html do
           flash[:notice] = "Issue updated!"
