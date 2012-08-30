@@ -29,3 +29,4 @@ gem "state_machine"
 gem "httparty"
 gem "rails_best_practices", :group => :development
 gem "strong_parameters"
+gem "ranked-model"

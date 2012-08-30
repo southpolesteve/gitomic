@@ -6,6 +6,9 @@ class Issue < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
+  ranks :icebox_priority, :column => :priority, :with_same => :project_id, :scope => :icebox
+  ranks :backlog_priority, :column => :priority, :with_same => :project_id, :scope => :backlog
+
   scope :icebox, where('state IS NULL OR state = ?', "icebox")
   scope :backlog, where(state: "backlog")
 
