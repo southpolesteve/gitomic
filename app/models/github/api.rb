@@ -20,7 +20,21 @@ module Github
     end
 
     def orgs
-      raise "WIP"
+      array = []
+      @last_response = self.class.get '/user/orgs'
+      @last_response.each do |data|
+        array << Github::Org.new(data)
+      end
+      array
+    end
+
+    def org_repos(name)
+      array = []
+      @last_response = self.class.get "/orgs/#{name}/repos"
+      @last_response.each do |data|
+        array << Github::Repo.new(data)
+      end
+      array
     end
 
     def labels(owner, repo)

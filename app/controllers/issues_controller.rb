@@ -26,7 +26,7 @@ class IssuesController < ApplicationController
   def update
     @project = current_user.projects.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
-    @issue.attributes = issue_params 
+    @issue.attributes = issue_params
     @issue.update_github(current_user) if @issue.valid?
     if @issue.save
       respond_to do |format|
