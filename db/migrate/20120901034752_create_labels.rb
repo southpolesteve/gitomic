@@ -3,8 +3,11 @@ class CreateLabels < ActiveRecord::Migration
     create_table :labels do |t|
       t.string :name
       t.string :color
+      t.integer :project_id
 
       t.timestamps
     end
+
+    add_index :labels, :project_id
   end
 end

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120901034752) do
+ActiveRecord::Schema.define(:version => 20120901035452) do
+
+  create_table "issue_labels", :force => true do |t|
+    t.integer  "label_id"
+    t.integer  "issue_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "issue_labels", ["issue_id"], :name => "index_issue_labels_on_issue_id"
+  add_index "issue_labels", ["label_id"], :name => "index_issue_labels_on_label_id"
 
   create_table "issues", :force => true do |t|
     t.string   "state"
@@ -37,9 +47,12 @@ ActiveRecord::Schema.define(:version => 20120901034752) do
   create_table "labels", :force => true do |t|
     t.string   "name"
     t.string   "color"
+    t.integer  "project_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "labels", ["project_id"], :name => "index_labels_on_project_id"
 
   create_table "projects", :force => true do |t|
     t.string   "owner"
