@@ -10,5 +10,10 @@ module Github
       @name = data["name"]
     end
 
+    def import
+      project = Project.find_by_name_and_owner(repo, owner)
+      project.labels.create(color: color, name: name)
+    end
+
   end
 end

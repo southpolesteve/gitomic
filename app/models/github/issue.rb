@@ -3,7 +3,7 @@ module Github
 
     attr_accessor :body, :closed_at, :created_at, :id, 
     :updated_at, :milestone, :number, :state, :title,
-    :owner, :repo
+    :owner, :repo, :labels
 
     def initialize(owner, repo, data)
       @owner = owner
@@ -17,6 +17,10 @@ module Github
       @number = data["number"]
       @state = data["state"]
       @title = data["title"]
+      @labels = []
+      data['labels'].each do |label_data|
+        @labels << Github::Label.new(owner, repo, label_data)
+      end
     end
 
     def self.create(user, owner, repo, data)
@@ -34,7 +38,11 @@ module Github
       attributes_map.except(:number).each do |key, value|
         i.send("#{value}=", self.send(key))
       end
+      labels.each do |label|
+        i.labels << project.labels.find_by_name(label.name)
+      end
       i.save!
+
       return i
     end
 

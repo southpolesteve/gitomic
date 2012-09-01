@@ -2,23 +2,12 @@ class Project < ActiveRecord::Base
   attr_accessible :name, :owner
 
   belongs_to :user
-  has_many :issues, :dependent => :delete_all
-  has_many :labels, :dependant => :delete_all
+  has_many :issues, :dependent => :destroy
+  has_many :labels, :dependent => :destroy
 
-  def setup_github_labels
-    labels = user.github.labels(owner, name).map(&:name)
-
-    default_labels.each do |label|
-      user.github.create_label owner, name, name: label[:name], color: label[:color]
-    end
-  end
-
-  def import_github_issues
-    github_issues = user.github.issues owner, name
-    github_issues.each do |github_issue|
-      github_issue.import
-    end
-    self
+  def import
+    github_labels.map(&:import)
+    github_issues.map(&:import)
   end
 
   def ranked_icebox
@@ -29,13 +18,13 @@ class Project < ActiveRecord::Base
     issues.backlog.rank(:backlog_priority)
   end
 
-  private
 
-  def default_labels
-    [
-      { :name => "icebox", :color => "FFFF66" },
-      { :name => "backlog", :color => "66CCFF" } 
-    ]
+  def github_labels
+    user.github.labels owner, name
+  end
+
+  def github_issues
+    user.github.issues owner, name
   end
 
 end

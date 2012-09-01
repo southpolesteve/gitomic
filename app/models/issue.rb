@@ -8,9 +8,10 @@ class Issue < ActiveRecord::Base
 
   belongs_to :project
   belongs_to :user
-  belongs_to :label, :through => :issue_labels
+  belongs_to :list, :class_name => :label
 
-  has_many :issue_labels
+  has_many :issue_labels, :dependent => :destroy
+  has_many :labels, :through => :issue_labels
 
   ranks :icebox_priority, :column => :priority, :with_same => :project_id, :scope => :icebox
   ranks :backlog_priority, :column => :priority, :with_same => :project_id, :scope => :backlog

@@ -5,6 +5,8 @@ module Github
     format :json
     base_uri 'https://api.github.com'
 
+    attr_accessor :tokenm, :last_response
+
     def initialize(user)
       @token = user.github_token
       self.class.default_params :access_token => @token
