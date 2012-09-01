@@ -6,27 +6,41 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 gem 'jquery-rails'
-gem "thin", ">= 1.4.1", :group => [:development, :test]
-gem "unicorn", ">= 4.3.1", :group => :production
-gem "pg", ">= 0.14.0"
-gem "haml", ">= 3.1.7"
-gem "haml-rails", ">= 0.3.4", :group => :development
-gem "hpricot", ">= 0.8.6", :group => :development
-gem "ruby_parser", ">= 2.3.1", :group => :development
-gem "rspec-rails", ">= 2.11.0", :group => [:development, :test]
-gem "capybara", ">= 1.1.2", :group => :test
-gem "email_spec", ">= 1.2.1", :group => :test
-gem "factory_girl_rails", ">= 4.0.0", :group => [:development, :test]
-gem "bootstrap-sass", ">= 2.0.4.0"
-gem "sendgrid", ">= 1.0.1"
-gem "omniauth", ">= 1.1.0"
+gem "pg"
+gem "bootstrap-sass"
+gem "sendgrid"
+gem "omniauth"
 gem "omniauth-github"
 gem "simple_form"
 gem "pry-rails"
-gem 'quiet_assets', :group => :development
 gem "bluecloth"
 gem "state_machine"
 gem "httparty"
-gem "rails_best_practices", :group => :development
 gem "strong_parameters"
 gem "ranked-model"
+gem "haml-rails"
+
+group :production do
+  gem "unicorn"
+end
+
+group :development, :test do
+  gem 'thin'
+  gem 'rspec-rails'
+  gem "factory_girl_rails"
+end
+
+group :test do
+  gem "capybara"
+  gem "email_spec"
+end
+
+
+group :development do
+  gem 'railroady'
+  gem "rails_best_practices"
+  gem 'quiet_assets'
+  gem "hpricot"
+  gem "ruby_parser"
+end
+

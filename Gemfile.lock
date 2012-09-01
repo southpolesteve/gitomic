@@ -136,6 +136,7 @@ GEM
       rack
     rack-test (0.6.1)
       rack (>= 1.0)
+    railroady (1.0.8)
     rails (3.2.8)
       actionmailer (= 3.2.8)
       actionpack (= 3.2.8)
@@ -232,31 +233,31 @@ PLATFORMS
 
 DEPENDENCIES
   bluecloth
-  bootstrap-sass (>= 2.0.4.0)
-  capybara (>= 1.1.2)
+  bootstrap-sass
+  capybara
   coffee-rails (~> 3.2.1)
-  email_spec (>= 1.2.1)
-  factory_girl_rails (>= 4.0.0)
-  haml (>= 3.1.7)
-  haml-rails (>= 0.3.4)
-  hpricot (>= 0.8.6)
+  email_spec
+  factory_girl_rails
+  haml-rails
+  hpricot
   httparty
   jquery-rails
-  omniauth (>= 1.1.0)
+  omniauth
   omniauth-github
-  pg (>= 0.14.0)
+  pg
   pry-rails
   quiet_assets
+  railroady
   rails (= 3.2.8)
   rails_best_practices
   ranked-model
-  rspec-rails (>= 2.11.0)
-  ruby_parser (>= 2.3.1)
+  rspec-rails
+  ruby_parser
   sass-rails (~> 3.2.3)
-  sendgrid (>= 1.0.1)
+  sendgrid
   simple_form
   state_machine
   strong_parameters
-  thin (>= 1.4.1)
+  thin
   uglifier (>= 1.0.3)
-  unicorn (>= 4.3.1)
+  unicorn
