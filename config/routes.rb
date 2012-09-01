@@ -1,6 +1,8 @@
 Murfhub::Application.routes.draw do
   
 
+  resources :labels
+
   resources :projects do 
     resources :issues
   end

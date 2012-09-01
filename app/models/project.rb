@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
 
   belongs_to :user
   has_many :issues, :dependent => :delete_all
+  has_many :labels, :dependant => :delete_all
 
   def setup_github_labels
     labels = user.github.labels(owner, name).map(&:name)
