@@ -5,7 +5,7 @@ module Github
     format :json
     base_uri 'https://api.github.com'
 
-    attr_accessor :tokenm, :last_response
+    attr_accessor :token, :last_response
 
     def initialize(user)
       @token = user.github_token
@@ -76,11 +76,19 @@ module Github
     end
 
     def rate_limit
-      @last_response.headers["x-ratelimit-limit"]
+      if @last_response
+        @last_response.headers["x-ratelimit-limit"]
+      else
+        self.class.get("/rate_limit")['rate']['limit']
+      end
     end
 
     def rate_limit_remaining
-      @last_response.headers["x-ratelimit-remaining"]
+      if @last_response
+        @last_response.headers["x-ratelimit-remaining"]
+      else
+        self.class.get("/rate_limit")['rate']['remaining']
+      end
     end
 
     def success?
