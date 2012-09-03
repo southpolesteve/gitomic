@@ -34,7 +34,7 @@ class IssuesController < ApplicationController
           flash[:notice] = "Issue updated!"
           redirect_to @project
         end
-        format.js { render :js => "console.log('success');" }
+        format.js
       end
     else
       respond_to do |format|
@@ -42,7 +42,7 @@ class IssuesController < ApplicationController
           flash[:error] = "This issue could not be updated"
           render :edit
         end
-        format.js { render :js => "console.log('error');" }
+        format.js
       end
     end
   end
