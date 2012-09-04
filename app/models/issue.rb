@@ -8,7 +8,7 @@ class Issue < ActiveRecord::Base
 
   belongs_to :project
   belongs_to :user
-  belongs_to :list, :class_name => :label
+  belongs_to :list, :class_name => "Label"
 
   has_many :issue_labels, :dependent => :destroy
   has_many :labels, :through => :issue_labels

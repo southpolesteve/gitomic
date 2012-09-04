@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120903194819) do
+ActiveRecord::Schema.define(:version => 20120904234107) do
 
   create_table "issue_labels", :force => true do |t|
     t.integer  "label_id"
@@ -39,8 +39,10 @@ ActiveRecord::Schema.define(:version => 20120903194819) do
     t.string   "user_id"
     t.string   "github_state"
     t.integer  "priority"
+    t.integer  "list_id"
   end
 
+  add_index "issues", ["list_id"], :name => "index_issues_on_list_id"
   add_index "issues", ["project_id"], :name => "index_issues_on_project_id"
   add_index "issues", ["user_id"], :name => "index_issues_on_user_id"
 
