@@ -1,12 +1,14 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
-
-- @users.each do |user|
-  = image_tag user.avatar
-  = user.name
-  - user.repos.each do |repo|
-    %p= link_to repo.full_name, projects_path(:full_name => repo.full_name), method: "post"
-
-  - user.orgs.each do |org|
-    - org.repos(current_user).each do |repo|
+.row
+  .span6
+    %h2 User Repos
+    = image_tag current_user.avatar
+    = current_user.name
+    - current_user.repos.each do |repo|
       %p= link_to repo.full_name, projects_path(:full_name => repo.full_name), method: "post"
+
+  .span6
+    %h2 Organization Repos
+    - current_user.orgs.each do |org|
+      %h3= org.name
+      - org.repos(current_user).each do |repo|
+        %p= link_to repo.full_name, projects_path(:full_name => repo.full_name), method: "post"
