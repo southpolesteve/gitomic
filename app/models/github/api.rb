@@ -95,5 +95,9 @@ module Github
       @last_response.code == 200
     end
 
+    def to_s
+      "#<#{self.class}"
+    end
+
   end
 end
