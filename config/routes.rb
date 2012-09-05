@@ -7,6 +7,7 @@ Murfhub::Application.routes.draw do
 
   resources :projects do 
     resources :issues
+    resources :labels
   end
 
   root :to => "home#index"
