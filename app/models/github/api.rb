@@ -39,6 +39,15 @@ module Github
       array
     end
 
+    def org_members(name)
+      array = []
+      @last_response = self.class.get "/orgs/#{name}/members"
+      @last_response.each do |data|
+        array << Github::User.new(data)
+      end
+      array
+    end
+
     def labels(owner, repo)
       array = []
       @last_response = self.class.get "/repos/#{owner}/#{repo}/labels"
