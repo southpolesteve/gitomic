@@ -5,6 +5,7 @@ class Project < ActiveRecord::Base
 
   has_many :issues, :dependent => :destroy
   has_many :labels, :dependent => :destroy
+  has_many :lists, :dependent => :destroy
 
   def import_labels
     github_labels.map(&:import)

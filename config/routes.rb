@@ -7,7 +7,12 @@ Murfhub::Application.routes.draw do
 
   resources :projects do 
     resources :issues
-    resources :labels
+    resources :labels do
+      member do
+        post 'create_list'
+      end
+    end
+    resources :lists
   end
 
   root :to => "home#index"
