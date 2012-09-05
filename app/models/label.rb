@@ -3,6 +3,6 @@ class Label < ActiveRecord::Base
 
   has_many :issue_labels, :dependent => :destroy
   has_many :issues, :through => :issue_labels
-  has_many :list_issues, :class_name => "Issue"
+  has_many :list_issues, :class_name => 'Issue', :foreign_key => 'list_id'
 
 end

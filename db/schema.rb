@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904234107) do
+ActiveRecord::Schema.define(:version => 20120905000655) do
 
   create_table "issue_labels", :force => true do |t|
     t.integer  "label_id"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20120904234107) do
     t.integer  "project_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "list"
   end
 
   add_index "labels", ["project_id"], :name => "index_labels_on_project_id"
@@ -59,10 +60,11 @@ ActiveRecord::Schema.define(:version => 20120904234107) do
   create_table "projects", :force => true do |t|
     t.string   "owner"
     t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "user_id"
-    t.datetime "imported_at"
+    t.datetime "labels_imported_at"
+    t.datetime "issues_imported_at"
   end
 
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"

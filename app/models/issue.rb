@@ -3,8 +3,7 @@ class Issue < ActiveRecord::Base
 
   attr_accessible :body, :closed_at, :github_created_at, 
                   :github_id, :github_updated_at, :milestone, 
-                  :number, :state, :title, :user, :icebox_priority_position, 
-                  :backlog_priority_position
+                  :number, :state, :title, :user, :priority_position
 
   belongs_to :project
   belongs_to :user
@@ -13,11 +12,9 @@ class Issue < ActiveRecord::Base
   has_many :issue_labels, :dependent => :destroy
   has_many :labels, :through => :issue_labels
 
-  ranks :icebox_priority, :column => :priority, :with_same => :project_id, :scope => :icebox
-  ranks :backlog_priority, :column => :priority, :with_same => :project_id, :scope => :backlog
+  ranks :priority, :with_same => [:project_id, :list_id]
 
-  scope :icebox, where('state IS NULL OR state = ?', "icebox")
-  scope :backlog, where(state: "backlog")
+  scope :without_list, where(list_id: nil)
 
   validates :title, :presence => true
 

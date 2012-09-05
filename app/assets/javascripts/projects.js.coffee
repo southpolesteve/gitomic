@@ -3,12 +3,12 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  window.icebox = new List($('#icebox'))
-  window.backlog = new List($('#backlog'))
+  window.backlog = new List($('#icebox'))
 
 class List
   constructor: (@element)->
     @name = @element.attr('id')
+    @list_id = @element.data('list_id')
     @project_id = @element.data('project_id')
     @listItems = @element.find('li')
     @element.sortable({
@@ -19,16 +19,12 @@ class List
       @update_list_and_position(ui.item)
 
   update_list_and_position: (el) =>
-    current_list = el.parent().attr('id')
-    if current_list == @name
+    current_list = el.parent().data('list_id')
+    if current_list == @list_id
       issue_id = el.data('id')
       url = "/projects/#{@project_id}/issues/#{issue_id}.js"
-      data = {
-        issue: {
-          state: @name
-        }
-      }
-      data['issue']["#{@name}_priority_position"] = @position(el)
+      data = { issue: { list_id: ( @list_id ? '' ) } }
+      data['issue']["priority_position"] = @position(el)
       $.ajax({
         type: 'PUT',
         url: url,

@@ -50,7 +50,7 @@ class IssuesController < ApplicationController
   private
 
   def issue_params
-    params.require(:issue).permit(:title, :body, :state, :icebox_priority_position, :backlog_priority_position)
+    params.require(:issue).permit(:title, :body, :state, :priority_position)
   end
 
 end

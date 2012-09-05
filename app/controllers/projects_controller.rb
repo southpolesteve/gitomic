@@ -9,7 +9,8 @@ class ProjectsController < ApplicationController
     name = params[:full_name].split("/")[1]
     @project = current_user.projects.where(owner: owner, name: name).first || current_user.projects.new(owner: owner, name: name)
     if @project.persisted? || @project.save
-      @project.import
+      @project.import_labels
+      @project.import_issues
       redirect_to @project
     else
       flash[:error] = "There was an error importing that project to MurfHub"
@@ -19,8 +20,6 @@ class ProjectsController < ApplicationController
 
   def show
     @project = current_user.projects.find(params[:id])
-    @backlog = @project.ranked_backlog
-    @icebox = @project.ranked_icebox
   end
 
 
