@@ -4,4 +4,5 @@ module Github
   require_dependency 'github/repo'
   require_dependency 'github/label'
   require_dependency 'github/org'
+  require_dependency 'github/user'
 end
