@@ -12,7 +12,7 @@ module Github
 
     def import
       project = Project.find_by_name_and_owner(repo, owner)
-      project.labels.create(color: color, name: name)
+      project.labels.find_or_create_by_color_and_name(color, name)
     end
 
   end

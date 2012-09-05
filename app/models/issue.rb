@@ -10,7 +10,7 @@ class Issue < ActiveRecord::Base
   belongs_to :list
 
   has_many :issue_labels, :dependent => :destroy
-  has_many :labels, :through => :issue_labels
+  has_many :labels, :through => :issue_labels, :uniq => true
 
   ranks :priority, :with_same => [:project_id, :list_id]
 

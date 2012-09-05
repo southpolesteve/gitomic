@@ -39,7 +39,8 @@ module Github
         i.send("#{value}=", self.send(key))
       end
       labels.each do |label|
-        i.labels << project.labels.find_by_name(label.name)
+        found_label = project.labels.find_by_name(label.name)
+        i.labels << found_label unless i.labels.include?(found_label)
       end
       i.save!
 
