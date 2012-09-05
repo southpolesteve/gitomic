@@ -8,5 +8,5 @@
     %p= link_to repo.full_name, projects_path(:full_name => repo.full_name), method: "post"
 
   - user.orgs.each do |org|
-    - org.repos.each do |repo|
+    - org.repos(current_user).each do |repo|
       %p= link_to repo.full_name, projects_path(:full_name => repo.full_name), method: "post"
