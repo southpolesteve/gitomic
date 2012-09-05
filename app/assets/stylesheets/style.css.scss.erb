@@ -1,0 +1,33 @@
+@import "bootstrap";
+body { padding-top: 60px; }
+@import "bootstrap-responsive";
+
+ul.sortable{
+  min-height: 50px;
+  background-color: #eeeeee;
+  @include border-radius(5px);
+  padding: 10px 10px;
+
+  li{
+    border: solid 1px #dddddd;
+    padding: 5px 5px;
+    margin: 2px 2px;
+    @include border-radius(5px);
+    cursor: move;
+  }
+}
+
+body{
+  background-color: #E5E6DC;
+  background-image: url(<%= asset_path 'texture.png' %>);
+}
+
+ul.sortable{
+  background-color: white;
+  background-image: url(<%= asset_path 'paper.png' %>);
+  @include box-shadow(2px 2px 11px #cccccc);
+  
+  li{
+    background-color: white;
+  }
+}
