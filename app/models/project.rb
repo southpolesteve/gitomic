@@ -1,11 +1,13 @@
 class Project < ActiveRecord::Base
   attr_accessible :name, :owner, :org
 
-  belongs_to :user
+  belongs_to :creator, :class_name => 'User', :foreign_key => 'user_id'
 
   has_many :issues, :dependent => :destroy
   has_many :labels, :dependent => :destroy
   has_many :lists, :dependent => :destroy
+  has_many :project_memberships, :dependent => :destroy
+  has_many :users, :through => :project_memberships, :uniq => true
 
   def import_labels
     github_labels.map(&:import)
@@ -16,19 +18,23 @@ class Project < ActiveRecord::Base
   end
 
   def github_labels
-    user.github.labels owner, name
+    creator.github.labels owner, name
   end
 
   def github_issues
-    user.github.issues owner, name
+    creator.github.issues owner, name
   end
 
   def github_collaborators
-    user.github.collaborators owner, name
+    creator.github.collaborators owner, name
   end
 
   def github_org_members
-    user.github.org_members name
+    creator.github.org_members name
+  end
+
+  def import_team
+    github_team.each{ |github_user| github_user.import(owner, name) }
   end
 
   def github_team

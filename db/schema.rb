@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120906030450) do
+ActiveRecord::Schema.define(:version => 20120906040426) do
 
   create_table "issue_labels", :force => true do |t|
     t.integer  "label_id"
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(:version => 20120906030450) do
   end
 
   add_index "lists", ["project_id"], :name => "index_lists_on_project_id"
+
+  create_table "project_memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "project_memberships", ["project_id"], :name => "index_project_memberships_on_project_id"
+  add_index "project_memberships", ["user_id"], :name => "index_project_memberships_on_user_id"
 
   create_table "projects", :force => true do |t|
     t.string   "owner"

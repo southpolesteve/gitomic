@@ -13,9 +13,9 @@
       = render @project.issues.without_list.rank(:priority)
 
   .span3
-    %h3 Collaborators
-    - @project.github_team.each do |user|
-      = image_tag user.avatar, :size => '50x50'
+    %h3 Team
+    #team-members
+      - @project.users.each do |user|
+        = image_tag user.avatar, :size => '50x50', :title => user.github_login, :class => 'avatar' 
     %h3 Labels
-    - @project.labels.each do |label|
-      %span.label.label-info= label.name
+    = render @project.labels
