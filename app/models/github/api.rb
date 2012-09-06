@@ -21,6 +21,11 @@ module Github
       array
     end
 
+    def user(login)
+      @last_response = self.class.get "/users/#{login}"
+      Github::User.new(@last_response)
+    end
+
     def orgs
       array = []
       @last_response = self.class.get '/user/orgs'
@@ -35,6 +40,15 @@ module Github
       @last_response = self.class.get "/orgs/#{name}/repos"
       @last_response.each do |data|
         array << Github::Repo.new(data)
+      end
+      array
+    end
+
+    def collaborators(owner, name)
+      array = []
+      @last_response = self.class.get "/repos/#{owner}/#{name}/collaborators"
+      @last_response.each do |data|
+        array << Github::User.new(data)
       end
       array
     end
@@ -105,7 +119,7 @@ module Github
     end
 
     def to_s
-      "#<#{self.class}"
+      "#<#{self.class}>"
     end
 
   end
