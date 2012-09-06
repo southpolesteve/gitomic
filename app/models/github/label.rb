@@ -11,7 +11,7 @@ module Github
     end
 
     def import
-      project = Project.find_by_name_and_owner(repo, owner)
+      project = Project.find_by_owner_and_name(owner, repo)
       project.labels.find_or_create_by_color_and_name(color, name)
     end
 
