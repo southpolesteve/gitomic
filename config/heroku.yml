@@ -19,7 +19,6 @@ production:
 staging:
   app: gitomic-staging
   stack: cedar
-  app: awesomeapp-staging
   config: &default
     BUNDLE_WITHOUT: "development:test"
   addons:
