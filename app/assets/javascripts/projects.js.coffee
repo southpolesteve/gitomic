@@ -3,7 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  window.backlog = new List($('#icebox'))
+  backlog = new List($('#icebox'))
+  $('.avatar').draggable({ helper: "clone" });
 
 class List
   constructor: (@element)->
