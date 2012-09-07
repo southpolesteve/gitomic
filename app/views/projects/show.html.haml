@@ -8,7 +8,7 @@
 
 .row
   .span4
-    %h3 Icebox
+    %h3 Haystack
     %ul.sortable.unstyled{:id => "icebox", :data => { :project_id => @project.id, :list_id => nil }}
       = render @project.issues.without_list.rank(:priority)
 
