@@ -59,6 +59,7 @@ GEM
       rspec (~> 2.0)
     erubis (2.7.0)
     eventmachine (0.12.10)
+    excon (0.16.2)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.0.0)
@@ -76,6 +77,19 @@ GEM
       haml (~> 3.0)
       railties (~> 3.0)
     hashie (1.2.0)
+    heroku (2.31.2)
+      heroku-api (~> 0.3.4)
+      launchy (>= 0.3.2)
+      netrc (~> 0.7.7)
+      rest-client (~> 1.6.1)
+      rubyzip
+    heroku-api (0.3.4)
+      excon (~> 0.16.1)
+    heroku_san (3.0.4)
+      activesupport
+      heroku (>= 2)
+      heroku-api (>= 0.1.2)
+      rake
     hike (1.2.1)
     hpricot (0.8.6)
     httparty (0.8.3)
@@ -91,6 +105,8 @@ GEM
     jwt (0.1.5)
       multi_json (>= 1.0)
     kgio (2.7.4)
+    launchy (2.1.2)
+      addressable (~> 2.3)
     libwebsocket (0.1.5)
       addressable
     mail (2.4.4)
@@ -102,6 +118,7 @@ GEM
     multi_json (1.3.6)
     multi_xml (0.5.1)
     multipart-post (1.1.5)
+    netrc (0.7.7)
     nokogiri (1.5.5)
     oauth2 (0.8.0)
       faraday (~> 0.8)
@@ -166,6 +183,8 @@ GEM
       activerecord (>= 3.0.3)
     rdoc (3.12)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.11.0)
       rspec-core (~> 2.11.0)
       rspec-expectations (~> 2.11.0)
@@ -239,6 +258,8 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   haml-rails
+  heroku
+  heroku_san
   hpricot
   httparty
   jquery-rails

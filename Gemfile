@@ -28,6 +28,8 @@ group :development, :test do
   gem 'thin'
   gem 'rspec-rails'
   gem "factory_girl_rails"
+  gem 'heroku'
+  gem 'heroku_san'
 end
 
 group :test do
