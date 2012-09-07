@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
       @project.import_issues
       redirect_to @project
     else
-      flash[:error] = "There was an error importing that project to MurfHub"
+      flash[:error] = "There was an error importing that project to Gitomic"
       redirect_to root_path
     end
   end

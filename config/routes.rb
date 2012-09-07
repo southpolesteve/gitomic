@@ -1,4 +1,4 @@
-Murfhub::Application.routes.draw do
+Gitomic::Application.routes.draw do
   
 
   resources :issue_labels

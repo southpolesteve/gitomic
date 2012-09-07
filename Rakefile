@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Murfhub::Application.load_tasks
+Gitomic::Application.load_tasks

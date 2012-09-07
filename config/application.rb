@@ -15,7 +15,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Murfhub
+module Gitomic
   class Application < Rails::Application
 
     # don't generate RSpec tests for views and helpers
