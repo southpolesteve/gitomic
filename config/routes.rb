@@ -7,12 +7,16 @@ Gitomic::Application.routes.draw do
 
   resources :projects do 
     resources :issues
+    resources :lists
     resources :labels do
       member do
         post 'create_list'
       end
     end
-    resources :lists
+
+    collection do
+      get 'import'
+    end
   end
 
   root :to => "home#index"
