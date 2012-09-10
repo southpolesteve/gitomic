@@ -5,6 +5,10 @@
 $ ->
   backlog = new List($('#icebox'))
   $('.avatar').draggable({ helper: "clone" });
+  $('.label').draggable({ helper: "clone" });
+  $( ".issue" ).droppable({
+      hoverClass: "drop-hover",
+    });
 
 class List
   constructor: (@element)->

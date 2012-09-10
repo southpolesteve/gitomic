@@ -17,6 +17,11 @@ ul.sortable{
     background-color: white;
     cursor: move;
     @include border-radius(5px);
+
+    &.drop-hover{
+      border-color:#1f6993;
+      @include box-shadow(0 0 4px #1f6993);
+    }
   }
 }
 
@@ -29,3 +34,4 @@ img.avatar{
   @include border-radius(999px);
   @include box-shadow(2px 2px 5px #cccccc);
 }
+
