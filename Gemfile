@@ -22,6 +22,7 @@ gem "haml-rails"
 
 group :production do
   gem "unicorn"
+  gem 'thin'
 end
 
 group :development, :test do
