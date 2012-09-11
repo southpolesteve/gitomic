@@ -1,6 +1,6 @@
 %li.issue{:id => "issue_#{issue.id}", :data => { :id => issue.id }}
   = issue.number
-  = link_to issue.title , edit_project_issue_path(@project,issue)
+  = link_to issue.title , issue.github_url
 
   .pull-right
     = render issue.labels

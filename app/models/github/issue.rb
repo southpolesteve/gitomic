@@ -3,7 +3,7 @@ module Github
 
     attr_accessor :body, :closed_at, :created_at, :id, 
     :updated_at, :milestone, :number, :state, :title,
-    :owner, :repo, :labels
+    :owner, :repo, :labels, :url, :assignee
 
     def initialize(owner, repo, data)
       @owner = owner
@@ -17,10 +17,12 @@ module Github
       @number = data["number"]
       @state = data["state"]
       @title = data["title"]
+      @url = data["html_url"]
       @labels = []
       data['labels'].each do |label_data|
         @labels << Github::Label.new(owner, repo, label_data)
       end
+      @assignee = data["assignee"] ? Github::User.new(data["assignee"]) : nil
     end
 
     def self.create(user, owner, repo, data)
@@ -66,7 +68,8 @@ module Github
       :number => :number,
       :state => :github_state,
       :title => :title,
-      :milestone => :milestone}
+      :milestone => :milestone,
+      :url => :github_url}
     end
 
   end
