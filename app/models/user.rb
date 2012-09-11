@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :issues
   has_many :project_memberships
   has_many :owned_projects, :class_name => 'Project'
+  has_many :assigned_issues, :class_name => 'Issue', :foreign_key => 'assignee_id'
 
   def self.create_with_omniauth(auth)
     create! do |user|

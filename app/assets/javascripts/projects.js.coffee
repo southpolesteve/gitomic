@@ -8,7 +8,14 @@ $ ->
   $('.label').draggable({ helper: "clone" });
   $( ".issue" ).droppable({
       hoverClass: "drop-hover",
+      drop: (event, ui) ->
+        model = ui.draggable.data('model')
+        switch model
+          when 'User'
+            console.log this
     });
+
+
 
 class List
   constructor: (@element)->
@@ -23,18 +30,18 @@ class List
     @element.bind "sortupdate", (event, ui) =>
       @update_list_and_position(ui.item)
 
-  update_list_and_position: (el) =>
-    current_list = el.parent().data('list_id')
+  update_list_and_position: (element) =>
+    current_list = element.parent().data('list_id')
     if current_list == @list_id
-      issue_id = el.data('id')
+      issue_id = element.data('id')
       url = "/projects/#{@project_id}/issues/#{issue_id}.js"
       data = { issue: { list_id: ( @list_id ? '' ) } }
-      data['issue']["priority_position"] = @position(el)
+      data['issue']["priority_position"] = @position(element)
       $.ajax({
         type: 'PUT',
         url: url,
         data: data,
       });
 
-  position: (el) =>
-    @element.children().index(el)
+  position: (element) =>
+    @element.children().index(element)
