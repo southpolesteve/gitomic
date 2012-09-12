@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
       @project.import_labels
       @project.import_team
       @project.import_issues
+      # not ready yet @project.create_hook
       redirect_to @project
     else
       flash[:error] = "There was an error importing that project to Gitomic"
