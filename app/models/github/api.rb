@@ -35,63 +35,71 @@ module Github
       array
     end
 
-    def org_repos(name)
+    def org_repos(org)
       array = []
-      @last_response = self.class.get "/orgs/#{name}/repos"
+      @last_response = self.class.get "/orgs/#{org}/repos"
       @last_response.each do |data|
         array << Github::Repo.new(data)
       end
       array
     end
 
-    def collaborators(owner, name)
+    def collaborators(user, repo)
       array = []
-      @last_response = self.class.get "/repos/#{owner}/#{name}/collaborators"
+      @last_response = self.class.get "/repos/#{user}/#{repo}/collaborators"
       @last_response.each do |data|
         array << Github::User.new(data)
       end
       array
     end
 
-    def org_members(name)
+    def hooks(user, repo)
+      @last_response = self.class.get "/repos/#{user}/#{repo}/hooks"
+    end
+
+    def create_hook(user, repo, params)
+      @last_response = self.class.post "/repos/#{user}/#{repo}/hooks", :body => params.to_json
+    end
+
+    def org_members(org)
       array = []
-      @last_response = self.class.get "/orgs/#{name}/members"
+      @last_response = self.class.get "/orgs/#{org}/members"
       @last_response.each do |data|
         array << Github::User.new(data)
       end
       array
     end
 
-    def labels(owner, repo)
+    def labels(user, repo)
       array = []
-      @last_response = self.class.get "/repos/#{owner}/#{repo}/labels"
+      @last_response = self.class.get "/repos/#{user}/#{repo}/labels"
       @last_response.each do |data|
-        array << Github::Label.new(owner, repo, data)
+        array << Github::Label.new(user, repo, data)
       end
       array
     end
 
-    def issues(owner, repo)
+    def issues(user, repo)
       array = []
-      @last_response = self.class.get "/repos/#{owner}/#{repo}/issues"
+      @last_response = self.class.get "/repos/#{user}/#{repo}/issues"
       @last_response.each do |data|
-        array << Github::Issue.new(owner, repo, data)
+        array << Github::Issue.new(user, repo, data)
       end
       array
     end
 
-    def create_issue(owner, repo, params)
-      @last_response = self.class.post "/repos/#{owner}/#{repo}/issues", :body => params.to_json
-      Github::Issue.new(owner,repo, @last_response).import
+    def create_issue(user, repo, params)
+      @last_response = self.class.post "/repos/#{user}/#{repo}/issues", :body => params.to_json
+      Github::Issue.new(user,repo, @last_response).import
     end
 
-    def create_label(owner, repo, params)
-      @last_response = self.class.post "/repos/#{owner}/#{repo}/labels", :body => params.to_json
+    def create_label(user, repo, params)
+      @last_response = self.class.post "/repos/#{user}/#{repo}/labels", :body => params.to_json
     end
 
-    def update_issue(owner, repo, number, params)
-      @last_response = self.class.patch "/repos/#{owner}/#{repo}/issues/#{number}", :body => params.to_json
-      Github::Issue.new(owner,repo, @last_response).import
+    def update_issue(user, repo, number, params)
+      @last_response = self.class.patch "/repos/#{user}/#{repo}/issues/#{number}", :body => params.to_json
+      Github::Issue.new(user,repo, @last_response).import
     end
 
     def create_comment
