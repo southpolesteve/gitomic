@@ -3,7 +3,8 @@ class Issue < ActiveRecord::Base
 
   attr_accessible :body, :closed_at, :github_created_at, 
                   :github_id, :github_updated_at, :milestone, 
-                  :number, :state, :title, :user, :priority_position
+                  :number, :state, :title, :user, :priority_position,
+                  :assignee_id
 
   belongs_to :project
   belongs_to :user

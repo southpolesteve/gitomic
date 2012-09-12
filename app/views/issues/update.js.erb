@@ -1,1 +1,2 @@
-$("li[data-id='<%= @issue.id %>']").replaceWith("<%= escape_javascript(render "issue", :issue => @issue) %>");
+$("li.issue[data-id='<%= @issue.id %>']").replaceWith("<%= escape_javascript(render 'issue', :issue => @issue) %>");
+new window.Issue($("li.issue[data-id='<%= @issue.id %>']"));
