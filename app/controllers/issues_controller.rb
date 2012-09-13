@@ -27,6 +27,10 @@ class IssuesController < ApplicationController
     @project = current_user.projects.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
     @issue.attributes = issue_params
+    params[:issue][:label_ids].each do |id|
+      label = @project.labels.find(id)
+      @issue.labels << label unless @issue.labels.include?(label)
+    end
     @issue.update_github(current_user) if @issue.valid?
     if @issue.save
       respond_to do |format|

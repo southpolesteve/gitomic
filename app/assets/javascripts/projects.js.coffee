@@ -39,6 +39,7 @@ class List
       data = { issue: { list_id: ( @list_id ? '' ) } }
       data['issue']["priority_position"] = @issue_position(element)
       data['issue']['assignee_id'] = element.data('assignee_id')
+      data['issue']['label_ids'] = element.data('label_ids')
       $.ajax({
         type: 'PUT',
         url: url,
@@ -67,8 +68,11 @@ class Issue
             window.haystack.update_list_and_position($(this))
             ui.helper.remove()
           when 'Label'
-            console.log this
-            #do something with labels
+            label_ids = $(this).data('label_ids')
+            label_ids.push(dropped_element.data('id'))
+            $(this).data('label_ids', label_ids)
+            window.haystack.update_list_and_position($(this))
+            ui.helper.remove()
     });
 
 class Label

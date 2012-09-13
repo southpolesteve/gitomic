@@ -4,7 +4,7 @@ class Issue < ActiveRecord::Base
   attr_accessible :body, :closed_at, :github_created_at, 
                   :github_id, :github_updated_at, :milestone, 
                   :number, :state, :title, :user, :priority_position,
-                  :assignee_id
+                  :assignee_id, :issue_labels_attributes, :label_id
 
   belongs_to :project
   belongs_to :user
@@ -13,6 +13,8 @@ class Issue < ActiveRecord::Base
 
   has_many :issue_labels, :dependent => :destroy
   has_many :labels, :through => :issue_labels, :uniq => true
+
+  accepts_nested_attributes_for :issue_labels, :allow_destroy => true
 
   ranks :priority, :with_same => [:project_id, :list_id]
 
@@ -24,7 +26,7 @@ class Issue < ActiveRecord::Base
 
 
   def update_github(user)
-    if github_params_changed?
+    if true
       if new_record?
         Github::Issue.create(user, project_owner, project_name, github_params)
       else
@@ -43,6 +45,8 @@ class Issue < ActiveRecord::Base
   def github_params
     { :body => body,
       :title => title,
+      :assignee => assignee.github_login,
+      :labels => labels.map(&:name),
     }
   end
 
