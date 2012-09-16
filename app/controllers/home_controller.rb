@@ -4,7 +4,7 @@ class HomeController < ApplicationController
       redirect_to projects_path and return
     end
 
-    if Rails.env != "production"
+    if Rails.env == "production"
       render "landing", :layout => "landing"
     end
 
