@@ -3,7 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  window.haystack = new List($('#haystack'))
+  for list in $('.list')
+    $(list).data('object', new List($(list)))
 
   for user in $('.draggables .user')
     $(user).data('object', new User($(user)))
@@ -36,7 +37,6 @@ class List
     if current_list == @list_id
       issue_id = element.data('id')
       url = "/projects/#{@project_id}/issues/#{issue_id}.js"
-      data = { issue: { list_id: ( @list_id ? '' ) } }
       data['issue']["priority_position"] = @issue_position(element)
       data['issue']['assignee_id'] = element.data('assignee_id')
       data['issue']['label_ids'] = element.data('label_ids')
@@ -65,7 +65,7 @@ class Issue
         switch model
           when 'User'
             $(this).data('assignee_id', dropped_element.data('id'))
-            window.haystack.update_list_and_position($(this))
+            $(this).parent().data('object').update_list_and_position($(this))
             ui.helper.remove()
           when 'Label'
             label_ids = $(this).data('label_ids')

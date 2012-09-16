@@ -3,14 +3,20 @@
     %h1 #{@project.owner}/#{@project.name}
   .span4
     .pull-right
-      = link_to "New List", new_project_list_path(@project), :class => "btn"
+      = link_to "New List", new_project_label_path(@project), :class => "btn"
       = link_to "New Issue", new_project_issue_path(@project), :class => "btn"
 
 .row
-  .span4
+  .span3
     %h3 Haystack
-    %ul.list.sortable.unstyled{:id => "haystack", :data => { :model => 'List', :project_id => @project.id, :id => nil }}
+    %ul.list.sortable.unstyled{:data => { :model => 'List', :project_id => @project.id, :id => nil }}
       = render @project.issues.without_list.rank(:priority)
+
+  - @project.lists.each do |list|
+    .span3
+      %h3= list.name.titleize
+      %ul.list.sortable.unstyled{:data => { :model => 'List', :project_id => @project.id, :id => list.id }}
+        = render list.issues.rank(:priority)
 
   .span3.draggables
     %h3 Team

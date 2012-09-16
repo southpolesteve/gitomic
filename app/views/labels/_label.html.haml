@@ -1,1 +1,2 @@
-%span.label{:style => "background-color: ##{label.color}; color: ##{label.text_color}", :data => { :id => label.id} }= label.name
+- unless label.list
+  %span.label{:style => "background-color: ##{label.color}; color: ##{label.text_color}", :data => { :id => label.id} }= label.name

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911031331) do
+ActiveRecord::Schema.define(:version => 20120913050217) do
 
   create_table "issue_labels", :force => true do |t|
     t.integer  "label_id"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(:version => 20120911031331) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "list"
-    t.integer  "list_id"
   end
 
   add_index "labels", ["project_id"], :name => "index_labels_on_project_id"

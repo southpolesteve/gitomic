@@ -18,7 +18,7 @@ class Issue < ActiveRecord::Base
 
   ranks :priority, :with_same => [:project_id, :list_id]
 
-  scope :without_list, where(list_id: nil)
+  scope :without_list, includes(:labels).where(:labels => { :list => false })
 
   validates :title, :presence => true
 

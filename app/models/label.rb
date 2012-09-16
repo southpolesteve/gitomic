@@ -4,8 +4,6 @@ class Label < ActiveRecord::Base
   has_many :issue_labels, :dependent => :destroy
   has_many :issues, :through => :issue_labels, :uniq => true
 
-  belongs_to :list
-
   scope :without_list, where(:list_id => nil)
 
   def text_color

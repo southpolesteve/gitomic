@@ -1,8 +1,0 @@
-%h1 New List
-= simple_form_for [@project, @list] do |f|
-  = f.simple_fields_for @list.build_label do |l|
-    = l.input :name
-  = f.button :submit
-
-- @labels.each do |label|
-  %p= link_to label.name, create_list_project_label_path(@project, label)

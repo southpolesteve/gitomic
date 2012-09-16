@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
 
   has_many :issues, :dependent => :destroy
   has_many :labels, :dependent => :destroy
-  has_many :lists, :dependent => :destroy
+  has_many :lists, :class_name => 'Label', :conditions => ['list = ?' , true]
   has_many :project_memberships, :dependent => :destroy
   has_many :users, :through => :project_memberships, :uniq => true
 
