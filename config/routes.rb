@@ -2,9 +2,7 @@ Gitomic::Application.routes.draw do
   
 
   resources :issue_labels
-
   resources :labels
-
   resources :projects do 
     resources :issues
     resources :labels do
@@ -15,6 +13,15 @@ Gitomic::Application.routes.draw do
 
     collection do
       get 'import'
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :projects do
+        resources :issues
+        resources :labels
+      end
     end
   end
 
