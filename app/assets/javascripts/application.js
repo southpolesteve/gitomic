@@ -14,4 +14,14 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require bootstrap
-//= require_tree .
+//= require projects
+//= require underscore
+//= require backbone
+//
+//= require gitomic
+//
+//= require_tree ../templates/
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_tree ./routers
