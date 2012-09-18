@@ -20,6 +20,7 @@ gem "strong_parameters"
 gem "ranked-model"
 gem "haml-rails"
 gem "rabl"
+gem 'backbone-on-rails'
 
 group :production do
   gem "unicorn"
