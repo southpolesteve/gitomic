@@ -5,7 +5,7 @@ window.Gitomic =
   Routers: {}
   init: (data)-> 
     console.log "Backbone initiated!"
-    projects = new Gitomic.Collections.Projects(data.projects)
-    new Gitomic.Routers.Projects({ projects: projects })
+    @projects = new Gitomic.Collections.Projects(data.projects)
+    new Gitomic.Routers.Projects()
     Backbone.history.start()
 
