@@ -19,6 +19,7 @@ gem "httparty"
 gem "strong_parameters"
 gem "ranked-model"
 gem "haml-rails"
+gem "underscore-rails"
 
 group :production do
   gem "unicorn"
