@@ -1,2 +1,3 @@
 - unless label.list
-  %span.label{:style => "background-color: ##{label.color}; color: ##{label.text_color}", :data => { :id => label.id} }= label.name
+  %span.label{:style => "background-color: ##{label.color}; color: ##{label.text_color}", :data => { :model => 'Label', :id => label.id} }
+    = label.name

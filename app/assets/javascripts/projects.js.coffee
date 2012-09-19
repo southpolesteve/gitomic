@@ -4,16 +4,16 @@
 
 $ ->
   for list in $('.list')
-    $(list).data('object', new List($(list)))
+    new List($(list))
 
   for user in $('.draggables .user')
-    $(user).data('object', new User($(user)))
+    new User($(user))
 
   for issue in $('.issue')
-    $(issue).data('object', new Issue($(issue)))
+    new Issue($(issue))
 
   for label in $('.draggables .label')
-    $(label).data('object', new Label($(label)))
+    new Label($(label))
 
   window.List = List
   window.Issue = Issue
@@ -30,29 +30,12 @@ class List
     })
     @element.disableSelection()
     @element.bind "sortupdate", (event, ui) =>
-      @update_list_and_position(ui.item)
-
-  update_list_and_position: (element) =>
-    current_list = element.parent().data('id')
-    if current_list == @list_id
-      issue_id = element.data('id')
-      url = "/projects/#{@project_id}/issues/#{issue_id}.js"
-      data['issue']["priority_position"] = @issue_position(element)
-      data['issue']['assignee_id'] = element.data('assignee_id')
-      data['issue']['label_ids'] = element.data('label_ids')
-      $.ajax({
-        type: 'PUT',
-        url: url,
-        data: data,
-      });
-
-  issue_position: (element) =>
-    @element.children().index(element)
+      unless ui.sender
+        $(ui.item).trigger 'issue:update'
 
 class Issue
   constructor: (@element)->
     @id = @element.data('id')
-    @list = @element.parent().data('object')
     @bindEvents()
 
   bindEvents: ->
@@ -61,19 +44,51 @@ class Issue
       accept: '.draggables *'
       drop: (event, ui) ->
         dropped_element = ui.draggable
-        model = ui.draggable.data('object').model
+        model = ui.draggable.data('model')
         switch model
           when 'User'
             $(this).data('assignee_id', dropped_element.data('id'))
-            $(this).parent().data('object').update_list_and_position($(this))
+            $(this).trigger('issue:update')
             ui.helper.remove()
           when 'Label'
             label_ids = $(this).data('label_ids')
             label_ids.push(dropped_element.data('id'))
             $(this).data('label_ids', label_ids)
-            window.haystack.update_list_and_position($(this))
+            $(this).trigger('issue:update')
             ui.helper.remove()
+    })
+
+    @element.bind 'issue:update', (event) =>
+      @save()
+
+  save: ->
+    url = "/projects/#{@project_id()}/issues/#{@id}.js"
+    data = { issue: {} }
+    data['issue']["priority_position"] = @position()
+    data['issue']['assignee_id'] = @assignee_id()
+    data['issue']['label_ids'] = @label_ids()
+    data['issue']['list_id'] = @list_id()
+    $.ajax({
+      type: 'PUT',
+      url: url,
+      data: data,
     });
+
+  list_id: ->
+    @element.parent().data('id')
+
+  project_id: ->
+    @element.parent().data('project_id')
+
+  assignee_id: ->
+    @element.data('assignee_id')
+
+  label_ids: ->
+    @element.data('label_ids') ? []
+
+  position: ->
+    @element.index()
+
 
 class Label
   constructor: (@element)->

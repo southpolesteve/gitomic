@@ -27,9 +27,11 @@ class IssuesController < ApplicationController
     @project = current_user.projects.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
     @issue.attributes = issue_params
-    params[:issue][:label_ids].each do |id|
-      label = @project.labels.find(id)
-      @issue.labels << label unless @issue.labels.include?(label)
+    if params[:issue][:label_ids]
+      params[:issue][:label_ids].each do |id|
+        label = @project.labels.find(id)
+        @issue.labels << label unless @issue.labels.include?(label)
+      end
     end
     @issue.update_github(current_user) if @issue.valid?
     if @issue.save
@@ -54,7 +56,7 @@ class IssuesController < ApplicationController
   private
 
   def issue_params
-    params.require(:issue).permit(:title, :body, :state, :priority_position, :assignee_id)
+    params.require(:issue).permit(:title, :body, :state, :priority_position, :assignee_id, :list_id)
   end
 
 end

@@ -3,8 +3,9 @@ class Label < ActiveRecord::Base
 
   has_many :issue_labels, :dependent => :destroy
   has_many :issues, :through => :issue_labels, :uniq => true
+  has_many :list_issues, :class_name => 'Issue', :foreign_key => 'list_id'
 
-  scope :without_list, where(:list_id => nil)
+  after_initialize :set_defaults
 
   def text_color
     rgb = color.scan(/../).map {|color| color.to_i(16)}
@@ -16,4 +17,9 @@ class Label < ActiveRecord::Base
     end
   end
 
+  private
+
+  def set_defaults
+    self.list ||= false
+  end
 end

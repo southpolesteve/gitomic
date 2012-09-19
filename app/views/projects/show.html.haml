@@ -9,14 +9,14 @@
 .row
   .span3
     %h3 Haystack
-    %ul.list.sortable.unstyled{:data => { :model => 'List', :project_id => @project.id, :id => nil }}
-      = render @project.issues.without_list.rank(:priority)
+    %ul.list.sortable.unstyled{:data => { :model => '', :project_id => @project.id,  :id => ''}}
+      = render @project.issues.not_on_list.rank(:priority)
 
   - @project.lists.each do |list|
     .span3
       %h3= list.name.titleize
-      %ul.list.sortable.unstyled{:data => { :model => 'List', :project_id => @project.id, :id => list.id }}
-        = render list.issues.rank(:priority)
+      %ul.list.sortable.unstyled{:data => { :model => 'Label', :project_id => @project.id, :id => list.id }}
+        = render list.list_issues.rank(:priority)
 
   .span3.draggables
     %h3 Team

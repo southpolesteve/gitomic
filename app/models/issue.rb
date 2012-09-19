@@ -4,11 +4,11 @@ class Issue < ActiveRecord::Base
   attr_accessible :body, :closed_at, :github_created_at, 
                   :github_id, :github_updated_at, :milestone, 
                   :number, :state, :title, :user, :priority_position,
-                  :assignee_id, :issue_labels_attributes, :label_id
+                  :assignee_id, :issue_labels_attributes, :list_id
 
   belongs_to :project
   belongs_to :user
-  belongs_to :list
+  belongs_to :list, :class_name => 'Label'
   belongs_to :assignee, :class_name => 'User'
 
   has_many :issue_labels, :dependent => :destroy
@@ -18,7 +18,7 @@ class Issue < ActiveRecord::Base
 
   ranks :priority, :with_same => [:project_id, :list_id]
 
-  scope :without_list, includes(:labels).where(:labels => { :list => false })
+  scope :not_on_list, where(:list_id => nil)
 
   validates :title, :presence => true
 
@@ -45,9 +45,14 @@ class Issue < ActiveRecord::Base
   def github_params
     { :body => body,
       :title => title,
-      :assignee => assignee.github_login,
+      :assignee => assignee.try(:github_login),
       :labels => labels.map(&:name),
     }
   end
+
+  # def move_to_list(list)
+  #   self.labels << list unless self.labels.include?(list)
+  #   self.list = list
+  # end
 
 end
