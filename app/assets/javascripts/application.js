@@ -17,6 +17,8 @@
 //= require projects
 //= require underscore
 //= require backbone
+//= require hamlcoffee  
+//= require backbone-support
 //= require backbone.stickit
 //
 //= require gitomic

@@ -2,16 +2,15 @@ class Gitomic.Views.ProjectsIndex extends Backbone.View
 
   template: JST['projects/index']
 
-  bindings:
-    'a': 
-      modelAttr: 'name'
-      attributes: [
-        {
-          name: 'href'
-          observe: 'id'
-        }
-      ]
-
   render: ->
-    @.$el.html(JST['projects/index'])
-    @.stickit()
+    @renderTemplate()
+    @renderProjects()
+    return @
+
+  renderTemplate: ->
+    @.$el.html(@template)
+
+  renderProjects: ->
+    @collection.each (project) =>
+      view = new Gitomic.Views.Project({ model: project })
+      @.$('ul.projects').append view.render().el 
