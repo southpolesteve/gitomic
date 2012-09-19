@@ -1,17 +1,14 @@
 class Gitomic.Routers.Projects extends Support.SwappingRouter
 
   initialize: (options) ->
-    @el = $('#main_content')
+    @el = $('#backbone')
     @collection = options.collection
+    @model = options.model
 
   routes:
-    "projects": "index"
     "projects/:id": "show"
 
-  index: ->
-    view = new Gitomic.Views.ProjectsIndex({ collection: @collection })
-    @swap(view)
-
   show: (projectId)->
-    view = new Gitomic.Views.ProjectsIndex({ collection: @collection })
+    view = new Gitomic.Views.ProjectsShow({ model: @model })
+    console.log(view)
     @swap(view)

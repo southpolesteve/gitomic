@@ -1,4 +1,2 @@
-:javascript
-  Gitomic.init({
-    projects: #{render(file: 'api/v1/projects/index', formats: :json).html_safe}
-  });
+- @projects.each do |project|
+%h4= link_to project.name, project
