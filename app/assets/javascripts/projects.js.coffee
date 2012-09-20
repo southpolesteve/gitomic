@@ -25,9 +25,12 @@ class List
   constructor: (@element)->
     @id = @element.data('id')
     @project_id = @element.data('project_id')
-    @element.sortable({
-      connectWith: ".sortable"
-    })
+    @element.sortable
+      connectWith: ".sortable",
+      placeholder: 'drop-placeholder',
+      start: (event, ui) ->
+        ui.placeholder.height(ui.item.height())
+
     @element.disableSelection()
     @element.bind "sortupdate", (event, ui) =>
       unless ui.sender
