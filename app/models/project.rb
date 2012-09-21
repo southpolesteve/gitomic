@@ -9,12 +9,23 @@ class Project < ActiveRecord::Base
   has_many :project_memberships, :dependent => :destroy
   has_many :users, :through => :project_memberships, :uniq => true
 
+    
+  def import_github
+    import_labels
+    import_team
+    import_issues
+  end
+
   def import_labels
     github_labels.map(&:import)
   end
 
   def import_issues
     github_issues.map(&:import)
+  end
+
+  def import_team
+    github_team.each{ |github_user| github_user.import(owner, name) }
   end
 
   def github_labels
@@ -33,12 +44,12 @@ class Project < ActiveRecord::Base
     creator.github.org_members name
   end
 
-  def import_team
-    github_team.each{ |github_user| github_user.import(owner, name) }
-  end
-
   def github_team
     org ? github_org_members : github_collaborators
+  end
+
+  def create_github_hook
+    #WIP
   end
 
 end
