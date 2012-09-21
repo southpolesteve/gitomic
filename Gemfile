@@ -20,6 +20,7 @@ gem "strong_parameters"
 gem "ranked-model"
 gem "haml-rails"
 gem "underscore-rails"
+gem 'resque'
 
 group :production do
   gem "unicorn"
