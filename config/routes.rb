@@ -1,10 +1,9 @@
 Gitomic::Application.routes.draw do
   
+  mount Resque::Server, :at => "/resque"
 
   resources :issue_labels
-
   resources :labels
-
   resources :projects do 
     resources :issues
     resources :labels do

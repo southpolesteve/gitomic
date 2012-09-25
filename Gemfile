@@ -33,6 +33,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem 'heroku'
   gem 'heroku_san'
+  gem 'foreman'
 end
 
 group :test do

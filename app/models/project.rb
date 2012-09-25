@@ -14,14 +14,21 @@ class Project < ActiveRecord::Base
     import_labels
     import_team
     import_issues
+    update_attribute(:imported_at, Time.now)
+  end
+
+  def import_github_async
+    Resque.enqueue( ImportProject, self.id )
   end
 
   def import_labels
     github_labels.map(&:import)
+    update_attribute(:labels_imported_at, Time.now)
   end
 
   def import_issues
     github_issues.map(&:import)
+    update_attribute(:issues_imported_at, Time.now)
   end
 
   def import_team
