@@ -8,9 +8,10 @@ class ProjectsController < ApplicationController
     owner = params[:full_name].split("/")[0]
     name = params[:full_name].split("/")[1]
     org = params[:org]
-    @project = current_user.owned_projects.where(owner: owner, name: name).first || current_user.owned_projects.new(owner: owner, name: name, org: org)
-    if @project.persisted? || @project.save
+    @project = current_user.owned_projects.where(owner: owner, name: name).first_or_create
+    if @project
       @project.import_github_async
+      current_user.projects << @project
       redirect_to @project
     else
       flash[:error] = "There was an error importing that project to Gitomic"

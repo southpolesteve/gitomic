@@ -1,27 +1,32 @@
-.row
-  .span8
-    %h1 #{@project.owner}/#{@project.name}
-  .span4
-    .pull-right
-      = link_to "New List", new_project_label_path(@project), :class => "btn"
-      = link_to "New Issue", new_project_issue_path(@project), :class => "btn"
-
-.row
-  .span3
-    %h3 Haystack
-    %ul.list.sortable.unstyled{:data => { :model => '', :project_id => @project.id,  :id => ''}}
-      = render @project.issues.not_on_list.rank(:priority)
-
-  - @project.lists.each do |list|
+- if @project.imported_at
+  .row
+    .span8
+      %h1 #{@project.owner}/#{@project.name}
+    .span4
+      .pull-right
+        = link_to "New List", new_project_label_path(@project), :class => "btn"
+        = link_to "New Issue", new_project_issue_path(@project), :class => "btn"
+  .row
     .span3
-      %h3= list.name.titleize
-      %ul.list.sortable.unstyled{:data => { :model => 'Label', :project_id => @project.id, :id => list.id }}
-        = render list.list_issues.rank(:priority)
+      %h3 The Pile
+      %ul.list.sortable.unstyled{:data => { :model => '', :project_id => @project.id,  :id => ''}}
+        = render @project.issues.not_on_list.rank(:priority)
 
-  .span3.draggables
-    %h3 Team
-    #team-members
-      - @project.users.each do |user|
-        = image_tag user.avatar, :size => '50x50', :title => user.github_login, :class => 'user', :data => { :id => user.id, :model => 'User' } 
-    %h3 Labels
-    = render @project.labels
+    - @project.lists.each do |list|
+      .span3
+        %h3= list.name.titleize
+        %ul.list.sortable.unstyled{:data => { :model => 'Label', :project_id => @project.id, :id => list.id }}
+          = render list.list_issues.rank(:priority)
+
+    .span3.draggables
+      %h3 Team
+      #team-members
+        - @project.users.each do |user|
+          = image_tag user.avatar, :size => '50x50', :title => user.github_login, :class => 'user', :data => { :id => user.id, :model => 'User' } 
+      %h3 Labels
+      = render @project.labels
+- else
+  %h1 #{@project.owner}/#{@project.name}
+  %p.alert.alert-error
+    %strong Import in progress!
+    %p We are still importing your project into Gitomic. If you refresh we might have finished already :)
