@@ -22,15 +22,23 @@ class User < ActiveRecord::Base
   end
 
   def github
-    Github::API.new(self)
+    Github.new oauth_token: self.github_token
   end
 
-  def repos
-    github.repos
+  def github_repos
+    Github::Repo.all(self)
   end
 
-  def orgs
-    github.orgs
+  def github_orgs
+    Github::Org.all(self)
+  end
+
+  def github_org_repos
+    repos = []
+    github_orgs.each do |org|
+      repos.concat github.repos(org: org.login).all
+    end
+    repos
   end
 
 end

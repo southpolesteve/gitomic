@@ -9,12 +9,12 @@
 .row
   .span6
     %h2 User Repos
-    - current_user.repos.each do |repo|
+    - current_user.github_repos.each do |repo|
       %p= link_to repo.full_name, projects_path(:full_name => repo.full_name), method: "post"
 
   .span6
     %h2 Organization Repos
-    - current_user.orgs.each do |org|
-      %h3= org.name
+    - current_user.github_orgs.each do |org|
+      %h3= org.login
       - org.repos(current_user).each do |repo|
         %p= link_to repo.full_name, projects_path(:full_name => repo.full_name, :org => true), method: "post"

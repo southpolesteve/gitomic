@@ -1,17 +1,25 @@
 module Github
   class Org
 
-    attr_accessor :name, :avatar, :id
+    attr_accessor :avatar_url, :login
 
     def initialize(data)
-      @name = data['login']
-      @avatar = data['avatar_url']
-      @id = data['id']
+      [:avatar_url, :login].each do |key|
+        self.send("#{key}=", data.send(key))
+      end
+    end
+
+    def self.all(user)
+      orgs = []
+      github = Github::Orgs.new oauth_token: user.github_token
+      github.all.each do |org|
+        orgs << Github::Org.new(org)
+      end
+      orgs
     end
 
     def repos(user)
-      github = Github::API.new(user)
-      github.org_repos name
+      Github::Repo.all(user, org: login)
     end
 
   end

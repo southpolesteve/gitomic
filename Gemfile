@@ -21,6 +21,7 @@ gem "ranked-model"
 gem "haml-rails"
 gem "underscore-rails"
 gem 'resque'
+gem 'github_api'
 
 group :production do
   gem "unicorn"
