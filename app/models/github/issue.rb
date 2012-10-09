@@ -27,6 +27,14 @@ module Github
       issues
     end
 
+    def gitomic_issue
+      gitomic_project.issues.find_or_initialize_by_number(number)
+    end
+
+    def gitomic_project
+      Project.find_by_owner_and_name owner, repo_name
+    end
+
     # def import
     #   i = issue
     #   attributes_map.except(:number).each do |key, value|
