@@ -36,7 +36,7 @@ class Project < ActiveRecord::Base
   end
 
   def github_labels
-    creator.github.labels owner, name
+    Github::Label.list creator, owner, name
   end
 
   def github_issues
