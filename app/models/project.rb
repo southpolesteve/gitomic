@@ -40,7 +40,7 @@ class Project < ActiveRecord::Base
   end
 
   def github_issues
-    creator.github.issues owner, name
+    Github::Issue.list_repo creator, owner, name
   end
 
   def github_collaborators

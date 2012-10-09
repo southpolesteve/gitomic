@@ -1,14 +1,18 @@
 module Github
   class Issue
 
-    attr_accessor :created_at, :full_name
+    attr_accessor :body, :closed_at, :created_at, :id, 
+    :updated_at, :milestone, :number, :state, :title,
+    :labels, :url, :assignee
 
     def initialize(data)
-      [:full_name].each do |key|
+      [:body, :id, :number, :state, :title].each do |key|
         self.send("#{key}=", data.send(key))
       end
 
-      self.created_at = Time.parse(data.created_at)
+      self.created_at = Time.parse(data.created_at) if data.created_at
+      self.updated_at = Time.parse(data.updated_at) if data.updated_at
+      self.closed_at = Time.parse(data.closed_at) if data.closed_at
 
     end
 
