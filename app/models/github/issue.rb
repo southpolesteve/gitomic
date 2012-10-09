@@ -6,6 +6,8 @@ module Github
     :labels, :url, :assignee, :owner, :repo_name
 
     def initialize(owner, repo_name, data)
+      self.labels = []
+      
       [:body, :id, :number, :state, :title].each do |key|
         self.send("#{key}=", data.send(key))
       end
@@ -15,6 +17,10 @@ module Github
       self.created_at = Time.parse(data.created_at) if data.created_at
       self.updated_at = Time.parse(data.updated_at) if data.updated_at
       self.closed_at = Time.parse(data.closed_at) if data.closed_at
+
+      data.labels.each do |label|
+        self.labels << Github::Label.new(owner, repo_name, label)
+      end
 
     end
 
