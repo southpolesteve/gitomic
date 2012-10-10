@@ -9,7 +9,6 @@ module Github
       end
 
       self.created_at = Time.parse(data.created_at)
-
     end
 
     def self.all(user, opts = {})

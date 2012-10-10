@@ -19,4 +19,13 @@ describe Github::Org do
     end
   end
 
+  describe '.repos' do
+    let(:github_org) { FactoryGirl.build :github_org }
+    it "should return org repos", :vcr do
+      repos = github_org.repos(user)
+      repos.size.should_not == 0
+      repos.first.should be_instance_of(Github::Repo)
+    end
+  end
+
 end
