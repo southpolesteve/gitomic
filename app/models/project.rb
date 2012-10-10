@@ -44,11 +44,11 @@ class Project < ActiveRecord::Base
   end
 
   def github_collaborators
-    creator.github.collaborators owner, name
+    Github::Repo.collaborators creator, owner, name
   end
 
   def github_org_members
-    creator.github.org_members name
+    Github::Org.members creator, owner
   end
 
   def github_team

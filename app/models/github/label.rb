@@ -12,12 +12,10 @@ module Github
     end
 
     def self.list(user, owner, repo_name, opts ={})
-      labels = []
       github = Github::Issues.new oauth_token: user.github_token
       github.labels.list(owner, repo_name, opts).each do |label|
-        labels << Github::Label.new(owner, repo_name, label)
+        Github::Label.new(owner, repo_name, label)
       end
-      labels
     end
 
     def import

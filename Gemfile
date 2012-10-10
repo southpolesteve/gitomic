@@ -31,7 +31,7 @@ end
 group :development, :test do
   gem 'thin'
   gem 'rspec-rails'
-  gem "factory_girl_rails"
+  gem 'factory_girl_rails'
   gem 'heroku'
   gem 'heroku_san'
   gem 'foreman'
@@ -40,6 +40,8 @@ end
 group :test do
   gem "capybara"
   gem "email_spec"
+  gem "fakeweb"
+  gem "vcr"
 end
 
 

@@ -28,12 +28,10 @@ module Github
     end
 
     def self.list_repo(user, owner, repo_name, opts = {})
-      issues = []
       github = Github::Issues.new oauth_token: user.github_token
-      github.list_repo(owner, repo_name, opts).each do |issue|
-        issues << Github::Issue.new(owner, repo_name, issue)
+      github.list_repo(owner, repo_name, opts).map do |issue|
+        Github::Issue.new(owner, repo_name, issue)
       end
-      issues
     end
 
     def gitomic_issue

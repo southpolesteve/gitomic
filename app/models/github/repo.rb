@@ -13,12 +13,17 @@ module Github
     end
 
     def self.all(user, opts = {})
-      repos = []
       github = Github::Repos.new oauth_token: user.github_token
-      github.all(opts).each do |repo|
-        repos << Github::Repo.new(repo)
+      github.all(opts).map do |repo|
+        Github::Repo.new(repo)
       end
-      repos
+    end
+
+    def self.collaborators(user, owner, repo_name)
+      github = Github::Repos::Collaborators.new oauth_token: user.github_token
+      github.list(owner,repo_name).map do |user|
+        Github::User.new(user)
+      end
     end
 
   end

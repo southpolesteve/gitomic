@@ -10,12 +10,17 @@ module Github
     end
 
     def self.all(user)
-      orgs = []
       github = Github::Orgs.new oauth_token: user.github_token
-      github.all.each do |org|
-        orgs << Github::Org.new(org)
+      github.all.map do |org|
+        Github::Org.new(org)
       end
-      orgs
+    end
+
+    def self.members(user, org_name)
+      github = Github::Orgs.new oauth_token: user.github_token
+      github.members.list(org_name).map do |member|
+        Github::User.new(member)
+      end
     end
 
     def repos(user)
