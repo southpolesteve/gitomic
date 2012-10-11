@@ -6,16 +6,14 @@ describe Github::Repo do
   describe '.all' do
     it "should return all user repos", :vcr do
       repos = Github::Repo.all user
-      repos.size.should_not == 0
-      repos.first.should be_instance_of(Github::Repo)
+      repos.should contain_only_instances_of(Github::Repo)
     end
   end
 
   describe '.collaborators' do
     it "should return all repo collaborators", :vcr do
       collaborators = Github::Repo.collaborators user, "gitomic-test", "gitomic-test"
-      collaborators.size.should_not == 0
-      collaborators.first.should be_instance_of(Github::User)
+      collaborators.should contain_only_instances_of(Github::User)
     end
   end
 
