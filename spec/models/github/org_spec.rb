@@ -14,7 +14,7 @@ describe Github::Org do
   describe '.members' do
     it "should return org members", :vcr do
       members = Github::Org.members user, "gitomic-test-organization"
-      members.size.should_not == 0
+      members.should have_at_least(1).items
       members.first.should be_instance_of(Github::User)
     end
   end
