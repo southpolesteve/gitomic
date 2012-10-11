@@ -35,7 +35,7 @@ module Github
     end
 
     def gitomic_issue
-      gitomic_project.issues.find_or_initialize_by_number(number)
+      gitomic_project.issues.where(number: number).first
     end
 
     def gitomic_project

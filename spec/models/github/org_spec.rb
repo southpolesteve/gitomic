@@ -6,7 +6,7 @@ describe Github::Org do
   describe '.all' do
     it "should return all organizations", :vcr do
       orgs = Github::Org.all user
-      orgs.size.should_not == 0
+      orgs.should have_at_least(1).items
       orgs.first.should be_instance_of(Github::Org)
     end
   end
@@ -23,7 +23,7 @@ describe Github::Org do
     let(:github_org) { FactoryGirl.build :github_org }
     it "should return org repos", :vcr do
       repos = github_org.repos(user)
-      repos.size.should_not == 0
+      repos.should have_at_least(1).items
       repos.first.should be_instance_of(Github::Repo)
     end
   end

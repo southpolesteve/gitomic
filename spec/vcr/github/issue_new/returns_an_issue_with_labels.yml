@@ -1,0 +1,96 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/repos/gitomic-test/gitomic-test/issues?access_token=035bf79dcdfebaf681b72c72e60aff551a8c6d87
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - application/jsonapplication/vnd.github+json;q=0.7application/vnd.github.v3.raw+json;q=0.5application/vnd.github.beta.raw+json;q=0.1
+      accept-charset:
+      - utf-8
+      user-agent:
+      - Github Ruby Gem 0.7.0
+      content-type:
+      - application/json
+      authorization:
+      - Token token="035bf79dcdfebaf681b72c72e60aff551a8c6d87"
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "c2VydmVy":
+      - !binary |-
+        bmdpbng=
+      !binary "ZGF0ZQ==":
+      - !binary |-
+        VGh1LCAxMSBPY3QgMjAxMiAwMzo1Nzo0OCBHTVQ=
+      !binary "Y29udGVudC10eXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
+      !binary "dHJhbnNmZXItZW5jb2Rpbmc=":
+      - !binary |-
+        Y2h1bmtlZA==
+      !binary "Y29ubmVjdGlvbg==":
+      - !binary |-
+        Y2xvc2U=
+      !binary "c3RhdHVz":
+      - !binary |-
+        MjAwIE9L
+      !binary "eC1naXRodWItbWVkaWEtdHlwZQ==":
+      - !binary |-
+        Z2l0aHViLmJldGE=
+      !binary "bGFzdC1tb2RpZmllZA==":
+      - !binary |-
+        VGh1LCAxMSBPY3QgMjAxMiAwMzoxNDozOCBHTVQ=
+      !binary "dmFyeQ==":
+      - !binary |-
+        QWNjZXB0LCBBdXRob3JpemF0aW9uLCBDb29raWU=
+      !binary "eC1jb250ZW50LXR5cGUtb3B0aW9ucw==":
+      - !binary |-
+        bm9zbmlmZg==
+      !binary "eC1hY2NlcHRlZC1vYXV0aC1zY29wZXM=":
+      - !binary |-
+        cHVibGljX3JlcG8sIHJlcG8=
+      !binary "ZXRhZw==":
+      - !binary |-
+        ImRiM2MxYjY5MmQ2NTBkZTA2ZTY4NDc4ZjViNmY2M2YyIg==
+      !binary "eC1vYXV0aC1zY29wZXM=":
+      - !binary |-
+        dXNlciwgcmVwbywgZ2lzdA==
+      !binary "Y2FjaGUtY29udHJvbA==":
+      - !binary |-
+        cHJpdmF0ZSwgcy1tYXhhZ2U9NjAsIG1heC1hZ2U9NjA=
+      !binary "eC1yYXRlbGltaXQtcmVtYWluaW5n":
+      - !binary |-
+        NDk5Mw==
+      !binary "eC1yYXRlbGltaXQtbGltaXQ=":
+      - !binary |-
+        NTAwMA==
+      !binary "Y29udGVudC1lbmNvZGluZw==":
+      - !binary |-
+        Z3ppcA==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA+1Uy46cMBD8lVVLufGyIcwMUpRbvmBPWa1GxvSAFWMINitF
+        aP497SETYA/LSqvcIl/8aFeVu8v9NEGrNFrXGYTCjFoHIAcUDquzcFAATxgP
+        WRIy9pikBcsKzr8DxXRti8ZZKBJa6M7+iZ8RhLWqNkiIE4yDpqgJLOoL4TXO
+        9baIY9GrqFauGcuIsOLR4mBj2uhaJUNHguAagHgRTgxngljdtCjHAaN6mE9v
+        1+dpjPLE0kOWoczlKTnKPEcuS5axSlSyOhy+Vl/+8vPsGGEkfohWqMigi0k0
+        OrsS9Yl/U62o0dLkzraeh150mPEk6k1NOdnK3H9gAHfUs6rogXvqicLH8fTI
+        8zQNQHe1MnTvddaccppSD4+UxQdl7YgP81YAZmxLHKBgAVhHRaaorkdDyI1r
+        9atEr8qzpthUKb7h25j59/fVG75Jj943WpTo/fA0kYV0R1LgIvmJn+jMiNYL
+        KsfdZA7Yd1u3bEXNLLFHugYL0zErcywXJjSNMBK9kffK907GNeKaGXM/FmZl
+        XoSmYu6Y5p2sd7Tr8wfxVsX0Tjt8TnjGyStlV/3aGuq2E0BPDeM84E+yADWL
+        CSp1ucwumhvB4qp53QsnmyWAvrj/Q//bxFt98N+0ievzb1+bXk77BQAA
+    http_version: !binary |-
+      MS4x
+  recorded_at: Thu, 11 Oct 2012 03:57:49 GMT
+recorded_with: VCR 2.2.5
