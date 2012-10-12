@@ -8,3 +8,9 @@ RSpec::Matchers.define :contain_only_instances_of do |expected|
     classes.size == 1 && classes.first == expected
   end
 end
+
+RSpec::Matchers.define :all_be_persisted do
+  match do |actual|
+    actual.map(&:persisted?).uniq == [true]
+  end
+end

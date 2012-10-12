@@ -13,7 +13,7 @@ module Github
 
     def self.list(user, owner, repo_name, opts ={})
       github = Github::Issues.new oauth_token: user.github_token
-      github.labels.list(owner, repo_name, opts).each do |label|
+      github.labels.list(owner, repo_name, opts).map do |label|
         Github::Label.new(owner, repo_name, label)
       end
     end
