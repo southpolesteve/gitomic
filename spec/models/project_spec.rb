@@ -6,7 +6,7 @@ describe Project do
 
   describe '.import_labels' do
     before { project.import_labels }
-    
+
     it "should import and save all repo labels", :vcr do
       project.labels.should have_at_least(1).items
       project.labels.should all_be_persisted
@@ -23,6 +23,7 @@ describe Project do
       before { project.import_team }
 
       it "pending"
+
     end 
 
     context 'for a org repo' do
