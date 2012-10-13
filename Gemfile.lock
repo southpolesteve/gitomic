@@ -144,6 +144,9 @@ GEM
     omniauth-oauth2 (1.1.0)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    parallel (0.5.19)
+    parallel_tests (0.8.13)
+      parallel
     pg (0.14.0)
     polyglot (0.3.3)
     progressbar (0.11.0)
@@ -295,6 +298,7 @@ DEPENDENCIES
   jquery-rails
   omniauth
   omniauth-github
+  parallel_tests
   pg
   pry-rails
   quiet_assets

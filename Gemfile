@@ -35,6 +35,7 @@ group :development, :test do
   gem 'heroku'
   gem 'heroku_san'
   gem 'foreman'
+  gem 'parallel_tests'
 end
 
 group :test do
