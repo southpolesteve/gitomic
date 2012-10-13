@@ -39,4 +39,18 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.add_mock :github, {"provider"=>"github",
+                                     "uid"=>"2382633",
+                                     "info"=>
+                                      {"name"=>nil,
+                                       "email"=>"steve+github@gitomic.com",
+                                       "image"=>
+                                        "https://secure.gravatar.com/avatar/ec913744ec6c908c66e2cb141dadcd77?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"},
+                                     "credentials"=>{:token=>"035bf79dcdfebaf681b72c72e60aff551a8c6d87"},
+                                     "extra"=>{"raw_info"=>{:login=>"gitomic-test"}}}
+
+
+
 end
