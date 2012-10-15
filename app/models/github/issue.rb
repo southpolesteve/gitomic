@@ -33,7 +33,7 @@ module Github
         Github::Issue.new(owner, repo_name, issue)
       end
     end
-
+    
     def gitomic_issue
       gitomic_project.issues.where(number: number).first
     end
