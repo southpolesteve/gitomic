@@ -8,4 +8,14 @@ FactoryGirl.define do
     github_token "035bf79dcdfebaf681b72c72e60aff551a8c6d87"
     github_login "gitomic-test"
   end
+
+  factory :test_user_2, class: User do
+    name "Gitomic Test User 2"
+    email "steve+github2@gitomic.com"
+    provider "github" 
+    uid "2560085"
+    avatar "https://secure.gravatar.com/avatar/502c2111703936c85cde22963474e49a?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"
+    github_token "a22c6d47c3dd2709f4b4d1861011a01bbf05b291"
+    github_login "gitomic-test-2"
+  end
 end

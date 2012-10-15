@@ -19,17 +19,22 @@ describe Project do
   end
 
   describe '.import_team' do
+    before { project.import_team }
+
     context 'for a user repo' do
-      before { project.import_team }
-
-      it "pending"
-
+      it "should import collaborators", :vcr do
+        project.users.should have_at_least(2).items
+        project.users.should all_be_persisted
+      end
     end 
 
     context 'for a org repo' do
-      before { project.import_team }
+      let(:project){ FactoryGirl.create(:org_project, creator: user)}
 
-      it "pending"
+      it "should import org members", :vcr do
+        project.users.should have_at_least(2).items
+        project.users.should all_be_persisted
+      end
     end
   end
 
