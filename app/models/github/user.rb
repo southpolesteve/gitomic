@@ -18,6 +18,7 @@ module Github
         if user.save
           project.users << user unless project.users.include?(user)
         end
+        user
       end
     end
 
