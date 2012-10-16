@@ -7,7 +7,6 @@ module Github
       [:login, :url, :id, :avatar_url, :name, :email].each do |key|
         self.send("#{key}=", data.try(:send, key))
       end
-
     end
 
     def import(owner, name)
