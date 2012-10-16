@@ -43,6 +43,7 @@ group :test do
   gem "email_spec"
   gem "fakeweb"
   gem "vcr"
+  gem 'simplecov', :require => false
 end
 
 
