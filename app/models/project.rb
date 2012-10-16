@@ -47,12 +47,13 @@ class Project < ActiveRecord::Base
     Github::Repo.collaborators creator, owner, name
   end
 
+  # Is this method even necessary?
   def github_org_members
     Github::Org.members creator, owner
   end
 
   def github_team
-    org ? github_org_members : github_collaborators
+    github_collaborators #Different if org? See .github_org_members
   end
 
   def create_github_hook

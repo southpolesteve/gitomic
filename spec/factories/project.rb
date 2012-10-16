@@ -5,6 +5,12 @@ FactoryGirl.define do
     org false
   end
 
+  factory :project_rails do
+    owner "rails"
+    name "rails"
+    org true
+  end
+
 
   factory :org_project, class: Project do
     owner "gitomic-test-organization"

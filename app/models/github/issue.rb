@@ -28,48 +28,57 @@ module Github
     end
 
     def self.list_repo(user, owner, repo_name, opts = {})
+      issues = []
       github = Github::Issues.new oauth_token: user.github_token
-      github.list_repo(owner, repo_name, opts).map do |issue|
-        Github::Issue.new(owner, repo_name, issue)
+      github.list_repo(owner, repo_name, opts).each_page do |page|
+        page.map do |issue|
+          issues << Github::Issue.new(owner, repo_name, issue)
+        end
       end
+      issues
     end
     
     def gitomic_issue
-      gitomic_project.issues.where(number: number).first
+      gitomic_project.issues.where(number: number).first_or_initialize
     end
 
     def gitomic_project
       Project.find_by_owner_and_name owner, repo_name
     end
 
-    # def import
-    #   i = issue
-    #   attributes_map.except(:number).each do |key, value|
-    #     i.send("#{value}=", self.send(key))
-    #   end
-    #   labels.each do |label|
-    #     found_label = project.labels.find_by_name(label.name)
-    #     i.labels << found_label unless i.labels.include?(found_label)
-    #   end
-    #   i.save!
+    def self.find(user, owner, repo_name, number, opts = {})
+      github = Github::Issues.new oauth_token: user.github_token
+      response = github.get(owner, repo_name, number, opts)
+      Github::Issue.new(owner, repo_name, response)
+    end
 
-    #   return i
-    # end
+    def import
+      issue = gitomic_issue
+      attributes_map.except(:number).each do |key, value|
+        issue.send("#{value}=", self.send(key))
+      end
+      labels.each do |label|
+        found_label = gitomic_project.labels.where(name: label.name).first_or_initialize
+        issue.labels << found_label unless issue.labels.include?(found_label)
+      end
+      issue.save!
+      issue
+    end
 
-    # private
+    private
 
-    # def attributes_map
-    #   {:body => :body,
-    #   :closed_at => :closed_at,
-    #   :created_at => :github_created_at,
-    #   :id => :github_id,
-    #   :updated_at => :github_updated_at,
-    #   :number => :number,
-    #   :state => :github_state,
-    #   :title => :title,
-    #   :milestone => :milestone,
-    #   :url => :github_url}
-    # end
+    def attributes_map
+      {:body => :body,
+      :closed_at => :closed_at,
+      :created_at => :github_created_at,
+      :id => :github_id,
+      :updated_at => :github_updated_at,
+      :number => :number,
+      :state => :github_state,
+      :title => :title,
+      :milestone => :milestone,
+      :url => :github_url}
+    end
 
   end
 end

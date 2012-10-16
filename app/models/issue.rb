@@ -24,6 +24,9 @@ class Issue < ActiveRecord::Base
 
   delegate :owner, :name, :to => :project, :prefix => true
 
+  def github_issue(user)
+    Github::Issue.find user, project.owner, project.name, number
+  end
 
   def update_github(user)
     if true

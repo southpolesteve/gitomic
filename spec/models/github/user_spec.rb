@@ -5,7 +5,7 @@ describe Github::User do
   let(:project) { FactoryGirl.create :project, creator: user }
 
   describe '.import' do
-    let(:imported_user){ imported_user = github_user.import(project.owner, project.name) }
+    let(:imported_user){ github_user.import(project.owner, project.name) }
 
     context "a user does not exist" do
       let(:github_user){ FactoryGirl.build(:github_test_user_2) }
