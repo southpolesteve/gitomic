@@ -66,10 +66,12 @@ describe Github::Issue do
   end
 
   describe '.gitomic_issue' do
-    let(:issue) { FactoryGirl.build :github_issue }
-    let!(:project) { FactoryGirl.create(:project, name: issue.repo_name, owner: issue.owner) }
+    let(:issue) { FactoryGirl.create :issue }
+    let(:github_issue) { FactoryGirl.build :github_issue, number: issue.number }
 
-    it "returns an existing issue"
+    it "returns an existing issue" do
+      github_issue.gitomic_issue.should eq(issue)
+    end
   end
 
 end
