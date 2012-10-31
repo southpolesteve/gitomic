@@ -22,9 +22,6 @@ class Issue < ActiveRecord::Base
 
   validates :title, :presence => true
 
-  after_update :update_github_issue
-  after_create :create_github_issue
-
   delegate :owner, :name, :to => :project, :prefix => true
 
   def github_issue(user)
