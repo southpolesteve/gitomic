@@ -26,6 +26,7 @@ gem 'github_api'
 group :production do
   gem "unicorn"
   gem 'thin'
+  gem 'airbrake'
 end
 
 group :development, :test do

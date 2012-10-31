@@ -29,6 +29,9 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.3.2)
+    airbrake (3.1.6)
+      builder
+      girl_friday
     arel (3.0.2)
     awesome_print (1.0.2)
     bluecloth (2.2.0)
@@ -52,6 +55,7 @@ GEM
       execjs
     coffee-script-source (1.3.3)
     colored (1.2)
+    connection_pool (0.9.2)
     daemons (1.1.9)
     diff-lcs (1.1.3)
     email_spec (1.2.1)
@@ -73,6 +77,8 @@ GEM
     ffi (1.1.5)
     foreman (0.59.0)
       thor (>= 0.13.6)
+    girl_friday (0.10.0)
+      connection_pool (~> 0.9.0)
     github_api (0.7.0)
       faraday (~> 0.8.1)
       hashie (~> 1.2.0)
@@ -285,6 +291,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake
   bluecloth
   bootstrap-sass
   capybara
