@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
   end
 
   def settings
+    @project = current_user.projects.find(params[:id])
   end
 
 end

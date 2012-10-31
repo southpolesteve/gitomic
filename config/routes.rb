@@ -11,9 +11,11 @@ Gitomic::Application.routes.draw do
         post 'make_list'
       end
     end
-
     collection do
       get 'import'
+    end
+    member do
+      get 'settings'
     end
   end
 

@@ -25,6 +25,9 @@
           = image_tag user.avatar, :size => '50x50', :title => user.github_login, :class => 'user', :data => { :id => user.id, :model => 'User' } 
       %h3 Labels
       = render @project.labels
+  .row
+    .span12
+      = link_to "Project Settings", settings_project_path(@project)
 - else
   %h1 #{@project.owner}/#{@project.name}
   %p.alert.alert-error
