@@ -5,7 +5,16 @@
     .span4
       .pull-right
         = link_to "New List", new_project_label_path(@project), :class => "btn fancybox fancybox.ajax"
-        = link_to "New Issue", new_project_issue_path(@project), :class => "btn fancybox fancybox.ajax"
+        %a.btn{href: '#newIssue', data: { toggle: 'modal', target: '#newIssue' }} New Issue
+        #newIssue.modal.hide.fade
+          .modal-header
+            %button.close{"data-dismiss" => "modal", :type => "button"} ×
+            %h3 New Issue
+          .modal-body
+            = render 'issues/form', project: @project, issue: @new_issue
+          .modal-footer
+            %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+            %button.btn.btn-primary Create Issue
   .row
     .span3
       %h3 The Pile
