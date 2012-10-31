@@ -8,17 +8,17 @@ class User < ActiveRecord::Base
   has_many :assigned_issues, :class_name => 'Issue', :foreign_key => 'assignee_id'
 
   def self.create_with_omniauth(auth)
-    create! do |user|
-      user.provider = auth['provider']
-      user.uid = auth['uid']
-      if auth['info']
-         user.name = auth['info']['name']
-         user.email = auth['info']['email']
-         user.avatar = auth['info']['image']
-         user.github_token = auth['credentials']['token']
-         user.github_login = auth['extra']['raw_info']['login']
-      end
+    user = User.where(github_login: auth['extra']['raw_info']['login']).first_or_initialize
+    user.provider = auth['provider']
+    user.uid = auth['uid']
+    if auth['info']
+       user.name = auth['info']['name']
+       user.email = auth['info']['email']
+       user.avatar = auth['info']['image']
+       user.github_token = auth['credentials']['token']
+       user.github_login = auth['extra']['raw_info']['login']
     end
+    user.save!
   end
 
   def github
