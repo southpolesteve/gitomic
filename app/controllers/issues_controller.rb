@@ -8,7 +8,7 @@ class IssuesController < ApplicationController
   def create
     @project = current_user.projects.find(params[:project_id])
     @issue = @project.issues.new(issue_params.merge(:user => current_user))
-    @issue = @issue.create_github_issue(current_user) if @issue.valid?
+    @issue.create_github_issue(current_user) if @issue.valid?
     if @issue.save
       flash[:notice] = "Issue created!"
       redirect_to @project

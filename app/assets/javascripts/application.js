@@ -15,4 +15,5 @@
 //= require jquery-ui
 //= require bootstrap
 //= require underscore
+//= require jquery.fancybox
 //= require_tree .
