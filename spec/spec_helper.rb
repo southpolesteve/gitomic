@@ -42,6 +42,8 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  config.include IntegrationSpecHelper, :type => :request
+
   OmniAuth.config.test_mode = true
   OmniAuth.config.add_mock :github, {"provider"=>"github",
                                      "uid"=>"2382633",
