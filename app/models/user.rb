@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :provider, :uid, :name, :email, :avatar
+  attr_accessible :provider, :uid, :name, :email, :avatar, :github_login
 
   has_many :projects, :through => :project_memberships, :uniq => true
   has_many :issues
@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
        user.github_login = auth['extra']['raw_info']['login']
     end
     user.save!
+    return user
   end
 
   def github
