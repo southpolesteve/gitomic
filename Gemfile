@@ -22,11 +22,11 @@ gem "haml-rails"
 gem "underscore-rails"
 gem 'resque'
 gem 'github_api'
+gem 'airbrake'
 
 group :production do
   gem "unicorn"
   gem 'thin'
-  gem 'airbrake'
 end
 
 group :development, :test do
