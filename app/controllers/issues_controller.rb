@@ -5,6 +5,11 @@ class IssuesController < ApplicationController
     @issue = @project.issues.new
   end
 
+  def show
+    @project = current_user.projects.find(params[:project_id])
+    @issue = @project.issues.find(params[:id])
+  end
+
   def create
     @project = current_user.projects.find(params[:project_id])
     @issue = @project.issues.new(issue_params.merge(:user => current_user))
