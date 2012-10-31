@@ -22,20 +22,21 @@ class Issue < ActiveRecord::Base
 
   validates :title, :presence => true
 
+  after_update :update_github_issue
+  after_create :create_github_issue
+
   delegate :owner, :name, :to => :project, :prefix => true
 
   def github_issue(user)
-    Github::Issue.find user, project.owner, project.name, number
+    Github::Issue.find user, project_owner, project_name, number
   end
 
-  def update_github(user)
-    if true
-      if new_record?
-        Github::Issue.create(user, project_owner, project_name, github_params)
-      else
-        Github::Issue.update(user, project_owner, project_name, number, github_params)
-      end
-    end
+  def update_github_issue(user)
+    Github::Issue.update(user, project_owner, project_name, number, github_params)
+  end
+
+  def create_github_issue(user)
+    Github::Issue.create(user, project_owner, project_name, github_params)
   end
 
   def github_params_changed?

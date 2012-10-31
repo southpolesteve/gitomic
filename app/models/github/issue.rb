@@ -24,7 +24,16 @@ module Github
 
       self.user = Github::User.new(data.user)
       self.assignee = Github::User.new(data.assignee)
+    end
 
+    def self.update(user, project_owner, project_name, number, github_params)
+      github = Github::Issues.new oauth_token: user.github_token
+      github.edit project_owner, project_name, number, github_params
+    end
+
+    def self.create(user, project_owner, project_name, github_params)
+      github = Github::Issues.new oauth_token: user.github_token
+      github.create project_owner, project_name, github_params
     end
 
     def self.list_repo(user, owner, repo_name, opts = {})
