@@ -1,2 +1,10 @@
 %h3 Project Settings
 %h4 #{@project.owner}/#{@project.name}
+
+%h5 Users
+- @project.users.each do |user|
+  %p
+    = user.github_login
+    = link_to "invite(not working yet)", invite_user_path(user)
+
+%p Should probably add some settings here

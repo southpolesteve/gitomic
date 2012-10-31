@@ -1,5 +1,7 @@
 Gitomic::Application.routes.draw do
   
+  get "users/invite"
+
   mount Resque::Server, :at => "/resque"
 
   resources :issue_labels
@@ -16,6 +18,12 @@ Gitomic::Application.routes.draw do
     end
     member do
       get 'settings'
+    end
+  end
+
+  resources :users do
+    member do
+      get 'invite'
     end
   end
 
