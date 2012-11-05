@@ -1,4 +1,5 @@
 class IssuesController < ApplicationController
+  layout false
 
   def new
     @project = current_user.projects.find(params[:project_id])

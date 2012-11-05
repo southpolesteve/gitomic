@@ -4,7 +4,7 @@
       %h1 #{@project.owner}/#{@project.name}
     .span4
       .pull-right
-        = link_to "New List", new_project_label_path(@project), :class => "btn fancybox fancybox.ajax"
+        / = link_to "New List", new_project_label_path(@project), :class => "btn fancybox fancybox.ajax"
         %a.btn{href: '#newIssue', data: { toggle: 'modal', target: '#newIssue' }} New Issue
         #newIssue.modal.hide.fade
           .modal-header
@@ -13,27 +13,28 @@
           .modal-body
             = render 'issues/form', project: @project, issue: @new_issue
   .row
-    .span3
-      %h3 The Pile
-      %ul.list.sortable.unstyled{:data => { :model => '', :project_id => @project.id,  :id => ''}}
-        = render @project.issues.not_on_list.rank(:priority)
-
-    - @project.lists.each do |list|
-      .span3
-        %h3= list.name.titleize
-        %ul.list.sortable.unstyled{:data => { :model => 'Label', :project_id => @project.id, :id => list.id }}
-          = render list.list_issues.rank(:priority)
-
-    .span3.draggables
+    .span2.draggables
       %h3 Team
       #team-members
         - @project.users.each do |user|
           = image_tag user.avatar, :size => '50x50', :title => user.github_login, :class => 'user', :data => { :id => user.id, :model => 'User' } 
       %h3 Labels
       = render @project.labels
-  .row
-    .span12
+      %h3 Admin
       = link_to "Project Settings", settings_project_path(@project)
+
+    .span3
+      %h3 Issues
+      %ul.list.sortable.unstyled{:data => { :model => '', :project_id => @project.id,  :id => ''}}
+        = render @project.issues.not_on_list.rank(:priority)
+    .span7
+      #issue
+
+    / - @project.lists.each do |list|
+    /   .span3
+    /     %h3= list.name.titleize
+    /     %ul.list.sortable.unstyled{:data => { :model => 'Label', :project_id => @project.id, :id => list.id }}
+    /       = render list.list_issues.rank(:priority)
 - else
   %h1 #{@project.owner}/#{@project.name}
   %p.alert.alert-error

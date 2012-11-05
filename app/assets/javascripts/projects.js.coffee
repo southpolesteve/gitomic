@@ -64,6 +64,10 @@ class Issue
     @element.bind 'issue:update', (event) =>
       @save()
 
+    @element.find('a').bind 'click', (event) =>
+      event.preventDefault()
+      $('#issue').load("/projects/#{@project_id()}/issues/#{@id}")
+
   save: ->
     url = "/projects/#{@project_id()}/issues/#{@id}.js"
     data = { issue: {} }
