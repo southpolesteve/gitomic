@@ -1,5 +1,7 @@
-%h1 #{@project.owner}/#{@project.name}
-%h2 Issue #{@issue.number}
+%h3 #{@issue.number} - #{@issue.title}
 
 %h4= @issue.title
 %p= @issue.body
+
+- @issue.comments.each do |comment|
+  %p= comment.body

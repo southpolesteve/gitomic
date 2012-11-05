@@ -46,7 +46,18 @@ module Github
       end
       issues
     end
-    
+
+    def self.comments(user, project_owner, project_name, number, github_params)
+      comments = []
+      github = Github::Issues.new oauth_token: user.github_token
+      github.comments(owner, repo_name, number, opts).each_page do |page|
+        page.map do |comment|
+          comments << Github::Comment.new(owner, repo_name, comment)
+        end
+      end
+      comments
+    end
+
     def gitomic_issue
       gitomic_project.issues.where(number: number).first_or_initialize
     end

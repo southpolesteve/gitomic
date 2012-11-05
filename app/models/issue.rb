@@ -43,6 +43,10 @@ class Issue < ActiveRecord::Base
     false
   end
 
+  def comments
+    Github::Issue.comments user, project_owner, project_name, number
+  end
+
   def github_params
     { :body => body,
       :title => title,
@@ -50,10 +54,5 @@ class Issue < ActiveRecord::Base
       :labels => labels.map(&:name),
     }
   end
-
-  # def move_to_list(list)
-  #   self.labels << list unless self.labels.include?(list)
-  #   self.list = list
-  # end
 
 end
