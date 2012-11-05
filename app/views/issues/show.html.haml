@@ -3,5 +3,5 @@
 %h4= @issue.title
 %p= @issue.body
 
-- @issue.comments.each do |comment|
+- @issue.comments(current_user).each do |comment|
   %p= comment.body

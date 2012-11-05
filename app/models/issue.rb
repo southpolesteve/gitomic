@@ -43,7 +43,7 @@ class Issue < ActiveRecord::Base
     false
   end
 
-  def comments
+  def comments(user)
     Github::Issue.comments user, project_owner, project_name, number
   end
 

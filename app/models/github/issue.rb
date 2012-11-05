@@ -47,12 +47,12 @@ module Github
       issues
     end
 
-    def self.comments(user, project_owner, project_name, number, github_params)
+    def self.comments(user, owner, name, number, opts = {})
       comments = []
       github = Github::Issues.new oauth_token: user.github_token
-      github.comments(owner, repo_name, number, opts).each_page do |page|
+      github.comments.all(owner, name, number, opts).each_page do |page|
         page.map do |comment|
-          comments << Github::Comment.new(owner, repo_name, comment)
+          comments << Github::Comment.new(owner, name, number, comment)
         end
       end
       comments
