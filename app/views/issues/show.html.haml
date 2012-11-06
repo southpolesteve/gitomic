@@ -3,5 +3,8 @@
 %h4= @issue.title
 %p= @issue.body
 
-- @issue.comments(current_user).each do |comment|
-  %p= comment.body
+%hr
+%ul.unstyled.comments
+  = render @issue.comments
+
+= render 'comments/form', project: @project, issue: @issue, comment: @comment

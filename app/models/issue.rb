@@ -13,6 +13,7 @@ class Issue < ActiveRecord::Base
 
   has_many :issue_labels, :dependent => :destroy
   has_many :labels, :through => :issue_labels, :uniq => true
+  has_many :comments
 
   accepts_nested_attributes_for :issue_labels, :allow_destroy => true
 
@@ -43,7 +44,7 @@ class Issue < ActiveRecord::Base
     false
   end
 
-  def comments(user)
+  def github_comments(user)
     Github::Issue.comments user, project_owner, project_name, number
   end
 

@@ -1,13 +1,13 @@
 Gitomic::Application.routes.draw do
-  
-  get "users/invite"
 
   mount Resque::Server, :at => "/resque"
 
   resources :issue_labels
   resources :labels
   resources :projects do 
-    resources :issues
+    resources :issues do
+      resources :comments
+    end
     resources :labels do
       member do
         post 'make_list'

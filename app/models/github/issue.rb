@@ -85,6 +85,9 @@ module Github
       issue
     end
 
+    def import_comments
+    end
+
     private
 
     def attributes_map
