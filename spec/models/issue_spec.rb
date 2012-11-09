@@ -7,7 +7,11 @@ describe Issue do
   describe '.github_issue' do
     let(:github_issue) { issue.github_issue(user) }
 
-    it "should return a github issue", :vcr do
+    before do
+      Github::Issue.stub find: FactoryGirl.build(:github_issue)
+    end
+
+    it "should return a github issue" do
       github_issue.should be_instance_of(Github::Issue)
     end
 
