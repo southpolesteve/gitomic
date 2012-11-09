@@ -47,12 +47,13 @@ module Github
       issues
     end
 
-    def self.comments(user, owner, name, number, opts = {})
+    def comments(opts = {})
+      user = gitomic_project.creator
       comments = []
       github = Github::Issues.new oauth_token: user.github_token
-      github.comments.all(owner, name, number, opts).each_page do |page|
+      github.comments.all(owner, repo_name, number, opts).each_page do |page|
         page.map do |comment|
-          comments << Github::Comment.new(owner, name, number, comment)
+          comments << Github::Comment.new(owner, repo_name, number, comment)
         end
       end
       comments
@@ -82,10 +83,12 @@ module Github
         issue.labels << found_label unless issue.labels.include?(found_label)
       end
       issue.save!
+      import_comments
       issue
     end
 
     def import_comments
+      comments.map(&:import)
     end
 
     private

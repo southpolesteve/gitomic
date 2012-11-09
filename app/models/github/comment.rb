@@ -14,22 +14,13 @@ module Github
       self.issue_number = issue_number
     end
 
-    def self.all(user)
-      github = Github::Orgs.new oauth_token: user.github_token
-      github.all.map do |org|
-        Github::Org.new(org)
-      end
+    def import
+      issue = gitomic_project.issues.find_by_number(issue_number)
+      issue.comments.create!(body: body, user: user.gitomic_user )
     end
 
-    def self.members(user, org_name)
-      github = Github::Orgs.new oauth_token: user.github_token
-      github.members.list(org_name).map do |member|
-        Github::User.new(member)
-      end
-    end
-
-    def repos(user)
-      Github::Repo.all(user, org: login)
+    def gitomic_project
+      Project.find_by_owner_and_name owner, repo_name
     end
 
   end

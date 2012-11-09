@@ -44,10 +44,6 @@ class Issue < ActiveRecord::Base
     false
   end
 
-  def github_comments(user)
-    Github::Issue.comments user, project_owner, project_name, number
-  end
-
   def github_params
     { :body => body,
       :title => title,

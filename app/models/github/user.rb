@@ -21,6 +21,10 @@ module Github
       end
     end
 
+    def gitomic_user
+      ::User.find_or_initialize_by_github_login(login)
+    end
+
     def to_s
       "#<#{self.class} login:#{login}>"
     end
