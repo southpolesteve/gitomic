@@ -1,3 +1,5 @@
 %li.comment
-  = render comment.user
-  = GitHub::Markdown.render_gfm(comment.body).html_safe
+  .row-fluid
+    .span2
+      = render comment.user
+    .span10.body= GitHub::Markdown.render_gfm(comment.body).html_safe
