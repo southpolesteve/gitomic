@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.github.com/repos/gitomic-test/gitomic-test/issues?access_token=035bf79dcdfebaf681b72c72e60aff551a8c6d87
+    uri: https://api.github.com/repos/gitomic-test/gitomic-test/issues?access_token=4014890907c8ef103452e391f670ef395a3d47e6
     body:
       encoding: US-ASCII
       string: ''
@@ -16,7 +16,7 @@ http_interactions:
       content-type:
       - application/json
       authorization:
-      - Token token="035bf79dcdfebaf681b72c72e60aff551a8c6d87"
+      - Token token="4014890907c8ef103452e391f670ef395a3d47e6"
       accept-encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -30,7 +30,7 @@ http_interactions:
         bmdpbng=
       !binary "ZGF0ZQ==":
       - !binary |-
-        VGh1LCAxMSBPY3QgMjAxMiAwNDoyMTo0NCBHTVQ=
+        RnJpLCAwOSBOb3YgMjAxMiAwNTowMToyOCBHTVQ=
       !binary "Y29udGVudC10eXBl":
       - !binary |-
         YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
@@ -43,54 +43,54 @@ http_interactions:
       !binary "c3RhdHVz":
       - !binary |-
         MjAwIE9L
-      !binary "Y2FjaGUtY29udHJvbA==":
-      - !binary |-
-        cHJpdmF0ZSwgcy1tYXhhZ2U9NjAsIG1heC1hZ2U9NjA=
-      !binary "dmFyeQ==":
-      - !binary |-
-        QWNjZXB0LCBBdXRob3JpemF0aW9uLCBDb29raWU=
-      !binary "ZXRhZw==":
-      - !binary |-
-        ImRiM2MxYjY5MmQ2NTBkZTA2ZTY4NDc4ZjViNmY2M2YyIg==
       !binary "eC1jb250ZW50LXR5cGUtb3B0aW9ucw==":
       - !binary |-
         bm9zbmlmZg==
+      !binary "dmFyeQ==":
+      - !binary |-
+        QWNjZXB0LCBBdXRob3JpemF0aW9uLCBDb29raWU=
+      !binary "eC1yYXRlbGltaXQtcmVtYWluaW5n":
+      - !binary |-
+        NDk5Mg==
+      !binary "eC1hY2NlcHRlZC1vYXV0aC1zY29wZXM=":
+      - !binary |-
+        cHVibGljX3JlcG8sIHJlcG8=
       !binary "eC1yYXRlbGltaXQtbGltaXQ=":
       - !binary |-
         NTAwMA==
+      !binary "ZXRhZw==":
+      - !binary |-
+        IjQxZmQ3ZTc5ODc2ZTQxNzIxMmYxNTk0YTBlOWE3MjFmIg==
       !binary "eC1vYXV0aC1zY29wZXM=":
       - !binary |-
-        dXNlciwgcmVwbywgZ2lzdA==
+        Z2lzdCwgcmVwbywgdXNlcg==
       !binary "eC1naXRodWItbWVkaWEtdHlwZQ==":
       - !binary |-
         Z2l0aHViLmJldGE=
       !binary "bGFzdC1tb2RpZmllZA==":
       - !binary |-
-        VGh1LCAxMSBPY3QgMjAxMiAwMzoxNDozOCBHTVQ=
-      !binary "eC1hY2NlcHRlZC1vYXV0aC1zY29wZXM=":
+        RnJpLCAwOSBOb3YgMjAxMiAwNDo1NDo0MSBHTVQ=
+      !binary "Y2FjaGUtY29udHJvbA==":
       - !binary |-
-        cmVwbywgcHVibGljX3JlcG8=
-      !binary "eC1yYXRlbGltaXQtcmVtYWluaW5n":
-      - !binary |-
-        NDk5Mw==
+        cHJpdmF0ZSwgbWF4LWFnZT02MCwgcy1tYXhhZ2U9NjA=
       !binary "Y29udGVudC1lbmNvZGluZw==":
       - !binary |-
         Z3ppcA==
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAAA+1Uy46cMBD8lZWl3HjZEIZBinLLF+wpq9XImB6wYgzxY6Vo
-        NP+e9pBZIIdlpVVuERfTtqvKXWU/XcggFVg3aiC19kpFRBjgDtoTd6QmLKMs
-        pllM6WOW17SoGftOcM04DKCdJXWGP2q0f9bPCNxa2WlAxAvxRuGqC7GgzojX
-        OzfZOk35JJNOut43CWKl3oKxKRbGQYrYoSByjQh/4Y6bE0KsdloQ3kDSmXn2
-        tn0epiCOND8UBYhSHLNKlCUw0dCCtrwV7eHwtf3yys+KKoGE/+ADl4kGl6Jo
-        cHYl6hP7JgfegcXBnW09joPouGBZMukOe7KVuX/AiNxRT7LFA+6pR4qwjuUV
-        K/M8ImrspMZ9f3fNSaew9eQRu/ggrfXwMJciMqHBJwM/fWgwmtLK83lu72xc
-        7wa1/p+4E/1SQEu0HxowpKYRsQ5jgjzjBBq1LXtfTV4ZvBa58Tm9KbQpDR2c
-        2jeSl1cheYo3EBL1dMEQqhGlkLNgR3bEOc2HIKjxu3YYmMZt3raiZpY0IF2j
-        hakqmhKahQl0z7WAcBX2AvBOxjXimhnK8C3MUr9whXHYid07We9o1+cP4q3M
-        DFk9fM5YwTArzdj+2kbyVkE2vEP/n4m33sF/80xcn38DRcvHgPsFAAA=
+        H4sIAAAAAAAAA+1UTWvcMBD9K0HQm78ku16voeTWX5BTQ1hkedYWlSVHkgNl
+        2f/e0TrOaqFtCs2x+CLNjN6TZp7f44nMi1IHC88LOE/aE+nl8XhYrCKtxkxC
+        Zu7FGAdGP6nr/pyQZe65h/7A8TxhBWUpLVJKH4qypVVbNt9IQiapEN9o2GCd
+        xzNYb2bQmFe8A+VI+3giwihjMXMUbM/2mLtchozez67Ncz7LbJB+XLpMmCm3
+        MBuXY8BMUqQeSW43K3DeLQMiaT4FzrA5J1empupq6D6ICfTItYAJtL8yxsGY
+        GerwfRCz1C9cyf7KugXOTwkRFv4wJMbCkLCf4do4huIfuy6dQz3lFEE70//A
+        nj/gZO4u4btLBNmUca+qWZXGnZODBpzQiQyWv3DP7QHf0xIQe1ruqgpELfZF
+        I+oamOhoRXvei363Q7TX8lutOBCLhWwDuwhmLczfg7zvv7wpjlVNBhn/zicu
+        Mw0+x5uCd5EMP7GvcuIDOFxsbPE6XRzYtGJFNusgRGUGqfFhsW7fU0GAuFU6
+        ngjtYWXD6rIMfyKW/O/eL33iL7rnpVfBHiKprqG1zbvPBasYTdCJNgN8M6XI
+        kH5vRdFPoZepC6Oi56efJBvQe4MFAAA=
     http_version: !binary |-
       MS4x
-  recorded_at: Thu, 11 Oct 2012 04:21:44 GMT
+  recorded_at: Fri, 09 Nov 2012 05:01:33 GMT
 recorded_with: VCR 2.2.5

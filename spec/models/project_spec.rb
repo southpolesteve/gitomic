@@ -5,23 +5,29 @@ describe Project do
   let(:project){ FactoryGirl.create(:project, creator: user) }
 
   describe '.import_labels' do
-    before { project.import_labels }
+    before do
+      Github::Label.stub list: [ FactoryGirl.build(:github_label) ]
+      project.import_labels
+    end
 
-    it "should import and save all repo labels", :vcr do
+    it "should import and save all repo labels" do
       project.labels.should have_at_least(1).items
       project.labels.should all_be_persisted
     end
 
-    it "should update the labels imported time", :vcr do
+    it "should update the labels imported time" do
       project.labels_imported_at.should_not be_nil
     end
   end
 
   describe '.import_team' do
-    before { project.import_team }
+    before do
+      Github::Repo.stub collaborators: [ FactoryGirl.build(:github_test_user), FactoryGirl.build(:github_test_user_2) ]
+      project.import_team
+    end
 
     context 'for a user repo' do
-      it "should import collaborators", :vcr do
+      it "should import collaborators" do
         project.users.should have_at_least(2).items
         project.users.should all_be_persisted
       end
@@ -30,7 +36,7 @@ describe Project do
     context 'for a org repo' do
       let(:project){ FactoryGirl.create(:org_project, creator: user)}
 
-      it "should import org members", :vcr do
+      it "should import org members" do
         project.users.should have_at_least(2).items
         project.users.should all_be_persisted
       end
@@ -44,7 +50,11 @@ describe Project do
   end
 
   describe '.import_issues' do
-    before { project.import_issues }
+    before do
+      Github::Issue.stub list_repo: [ FactoryGirl.build(:github_issue) ]
+      Github::Issue.any_instance.stub comments: []
+      project.import_issues
+    end
 
     it "should import and save all repo issues", :vcr do
       project.issues.should have_at_least(1).items

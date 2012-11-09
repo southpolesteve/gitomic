@@ -3,6 +3,7 @@ FactoryGirl.define do
     owner "gitomic-test"
     name "gitomic-test"
     org false
+    creator { FactoryGirl.create(:test_user) }
   end
 
   factory :project_rails do

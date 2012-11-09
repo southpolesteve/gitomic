@@ -34,6 +34,10 @@ describe Github::Issue do
     let(:project) { issue.project }
     let(:imported_issue) { github_issue.import }
 
+    before do
+      Github::Issue.any_instance.stub comments: []
+    end
+
     context "an issue does not exist" do
       let(:github_issue) { FactoryGirl.build(:github_issue, number: issue.number+1 )}
 

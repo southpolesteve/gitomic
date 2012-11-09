@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.github.com/repos/gitomic-test/gitomic-test/collaborators?access_token=035bf79dcdfebaf681b72c72e60aff551a8c6d87
+    uri: https://api.github.com/repos/gitomic-test/gitomic-test/collaborators?access_token=4014890907c8ef103452e391f670ef395a3d47e6
     body:
       encoding: US-ASCII
       string: ''
@@ -16,7 +16,7 @@ http_interactions:
       content-type:
       - application/json
       authorization:
-      - Token token="035bf79dcdfebaf681b72c72e60aff551a8c6d87"
+      - Token token="4014890907c8ef103452e391f670ef395a3d47e6"
       accept-encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -30,7 +30,7 @@ http_interactions:
         bmdpbng=
       !binary "ZGF0ZQ==":
       - !binary |-
-        VGh1LCAxMSBPY3QgMjAxMiAwNDoyMTo0MSBHTVQ=
+        RnJpLCAwOSBOb3YgMjAxMiAwNTowMTozMSBHTVQ=
       !binary "Y29udGVudC10eXBl":
       - !binary |-
         YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
@@ -43,48 +43,50 @@ http_interactions:
       !binary "c3RhdHVz":
       - !binary |-
         MjAwIE9L
-      !binary "eC1naXRodWItbWVkaWEtdHlwZQ==":
-      - !binary |-
-        Z2l0aHViLmJldGE=
-      !binary "ZXRhZw==":
-      - !binary |-
-        IjE4N2Q4NmU5M2NjMzU1MjQ4ZDE5MjJiMGQ2YmQwODI3Ig==
-      !binary "bGFzdC1tb2RpZmllZA==":
-      - !binary |-
-        VGh1LCAxMSBPY3QgMjAxMiAwMzoxMzo0NCBHTVQ=
-      !binary "eC1vYXV0aC1zY29wZXM=":
-      - !binary |-
-        dXNlciwgcmVwbywgZ2lzdA==
-      !binary "Y2FjaGUtY29udHJvbA==":
-      - !binary |-
-        cHJpdmF0ZSwgbWF4LWFnZT02MCwgcy1tYXhhZ2U9NjA=
-      !binary "eC1jb250ZW50LXR5cGUtb3B0aW9ucw==":
-      - !binary |-
-        bm9zbmlmZg==
-      !binary "eC1yYXRlbGltaXQtbGltaXQ=":
-      - !binary |-
-        NTAwMA==
-      !binary "eC1yYXRlbGltaXQtcmVtYWluaW5n":
-      - !binary |-
-        NDk5OA==
       !binary "eC1hY2NlcHRlZC1vYXV0aC1zY29wZXM=":
       - !binary |-
-        ZGVsZXRlX3JlcG8sIHJlcG86c3RhdHVzLCBwdWJsaWNfcmVwbywgcmVwbw==
+        cmVwbzpzdGF0dXMsIHJlcG8sIGRlbGV0ZV9yZXBvLCBwdWJsaWNfcmVwbw==
       !binary "dmFyeQ==":
       - !binary |-
         QWNjZXB0LCBBdXRob3JpemF0aW9uLCBDb29raWU=
+      !binary "Y2FjaGUtY29udHJvbA==":
+      - !binary |-
+        cHJpdmF0ZSwgcy1tYXhhZ2U9NjAsIG1heC1hZ2U9NjA=
+      !binary "eC1naXRodWItbWVkaWEtdHlwZQ==":
+      - !binary |-
+        Z2l0aHViLmJldGE=
+      !binary "bGFzdC1tb2RpZmllZA==":
+      - !binary |-
+        RnJpLCAwOSBOb3YgMjAxMiAwNDo1ODo0OCBHTVQ=
+      !binary "eC1yYXRlbGltaXQtbGltaXQ=":
+      - !binary |-
+        NTAwMA==
+      !binary "eC1vYXV0aC1zY29wZXM=":
+      - !binary |-
+        Z2lzdCwgcmVwbywgdXNlcg==
+      !binary "ZXRhZw==":
+      - !binary |-
+        IjBkY2I5ODdhMjI3NWI1ZTE2OGE5NTcyZTdmZTZjM2I1Ig==
+      !binary "eC1yYXRlbGltaXQtcmVtYWluaW5n":
+      - !binary |-
+        NDk4Ng==
+      !binary "eC1jb250ZW50LXR5cGUtb3B0aW9ucw==":
+      - !binary |-
+        bm9zbmlmZg==
       !binary "Y29udGVudC1lbmNvZGluZw==":
       - !binary |-
         Z3ppcA==
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAAA5VQS2rDMBC9y0B3thTLwnYMpbteIpQyGU0VUf/QyNmE3r1y
-        25RkVbp7DPO+hwuscRDoLyA8vEEPp5QW6bXGJSgf0mk9KppHvQpH0fkwj4HK
-        xJLgo9i4/6IU4COeMWF8DS4zmfZV3VrL1NB+11HTsKFjZSuHjlzbQgE/7/dO
-        wrRGVlexr4Tfj/ovySf3+FvR2E6xwnccMaiJk0YRTnLT+8E8hxE9SwZXt1tc
-        bruU1uzUMvmcdmtl6s40dV3AMPsw5Zb3q718AhyK+AJ0AQAA
+        H4sIAAAAAAAAA72STWrDMBCF72LoLta/JStQuuslSgljaeqIxrGx5GxK7l45
+        IeC2lKRdZDdI8+a9+ZiXjwIOkGDcTOOuWBfblIa4pjSim0Yk7Xj+Ja7v6Lmk
+        6CyXRil02llWO61RuIYr7sE7b8yTf7xMAaFqggTeoYNA9pgoxIgpkjak7dTM
+        Ux/Ec+igxZiLi9uyLqeIY6kEI8O+LVbFpWcTfI57LUsW7Po27HNrtuy74MqE
+        MeXnr+vCEBaZ6OwZ6TfFbChkLbSUx9XfsQGABm7QmjfHG6utqLXhymjfADhR
+        3RPbtSwLbLGf0nbod5kaHvA2cD80MzqVl2XsP+QqJpzgnBsmrdSurpxHIayW
+        yihUFu5J7lqWXw6uFLeRW57cSXM6ukozVlfH1080QNGIrQMAAA==
     http_version: !binary |-
       MS4x
-  recorded_at: Thu, 11 Oct 2012 04:21:41 GMT
+  recorded_at: Fri, 09 Nov 2012 05:01:37 GMT
 recorded_with: VCR 2.2.5

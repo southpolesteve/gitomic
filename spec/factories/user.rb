@@ -5,7 +5,7 @@ FactoryGirl.define do
     provider "github" 
     uid "2382633"
     avatar "https://secure.gravatar.com/avatar/ec913744ec6c908c66e2cb141dadcd77?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"
-    github_token "035bf79dcdfebaf681b72c72e60aff551a8c6d87"
+    github_token "4014890907c8ef103452e391f670ef395a3d47e6"
     github_login "gitomic-test"
   end
 
