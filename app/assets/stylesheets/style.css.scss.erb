@@ -23,8 +23,10 @@ ul.sortable{
   }
 }
 
-span.label, img.user{
-  cursor: move;
+.draggables {
+  span.label, img.user{
+    cursor: move;
+  }
 }
 
 .loader{
@@ -53,11 +55,36 @@ body{
     height: 50px;
     width: 50px;
   }
+
+  div.user{
+    width: 75px;
+  }
 }
 
 ul.comments{
   li{
     padding-top: 5px;
   } 
+}
+
+#issue{
+  .body{
+    border: solid 1px #dddddd;
+    padding: 5px 5px;
+    margin: 2px 2px;
+    background-color: white;
+    @include border-radius(5px);
+  }
+}
+
+li.comment{
+  .body{
+    border: solid 1px #dddddd;
+    padding: 5px 5px;
+    margin: 2px 2px;
+    background-color: white;
+    @include border-radius(5px);
+
+  }
 }
 
