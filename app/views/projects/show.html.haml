@@ -16,8 +16,7 @@
     .span2.draggables
       %h3 Team
       #team-members
-        - @project.users.each do |user|
-          = image_tag user.avatar, :size => '50x50', :title => user.github_login, :class => 'user', :data => { :id => user.id, :model => 'User' } 
+        = render @project.users
       %h3 Labels
       = render @project.labels
       %h3 Admin
