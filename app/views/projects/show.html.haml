@@ -1,5 +1,5 @@
 - if @project.imported_at
-  .row
+  .row-fluid
     .span8
       %h1 #{@project.owner}/#{@project.name}
     .span4
@@ -12,7 +12,7 @@
             %h3 New Issue
           .modal-body
             = render 'issues/form', project: @project, issue: @new_issue
-  .row
+  .row-fluid
     .span2.draggables
       %h3 Team
       #team-members
@@ -30,11 +30,6 @@
     .span7
       #issue
 
-    / - @project.lists.each do |list|
-    /   .span3
-    /     %h3= list.name.titleize
-    /     %ul.list.sortable.unstyled{:data => { :model => 'Label', :project_id => @project.id, :id => list.id }}
-    /       = render list.list_issues.rank(:priority)
 - else
   %h1 #{@project.owner}/#{@project.name}
   %p.alert.alert-error
