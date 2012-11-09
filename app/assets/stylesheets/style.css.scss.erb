@@ -23,12 +23,6 @@ ul.sortable{
   }
 }
 
-ul.comments{
-  li{
-    border: 1px black solid;
-  }  
-}
-
 span.label, img.user{
   cursor: move;
 }
@@ -43,8 +37,27 @@ body{
   background-image: url(<%= asset_path 'texture.png' %>);
 }
 
-img.user{
-  @include border-radius(999px);
-  @include box-shadow(2px 2px 5px #cccccc);
+#team-members{
+  img.user{  
+    @include border-radius(999px);
+    @include box-shadow(2px 2px 5px #cccccc);
+    height: 50px;
+    width: 50px;
+  }
+}
+
+#issue{
+  img.user{  
+    @include border-radius(5px);
+    @include box-shadow(2px 2px 5px #cccccc);
+    height: 50px;
+    width: 50px;
+  }
+}
+
+ul.comments{
+  li{
+    padding-top: 5px;
+  } 
 }
 

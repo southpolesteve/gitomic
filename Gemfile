@@ -23,6 +23,7 @@ gem "underscore-rails"
 gem 'resque'
 gem 'github_api'
 gem 'airbrake'
+gem 'github-markdown'
 
 group :production do
   gem "unicorn"

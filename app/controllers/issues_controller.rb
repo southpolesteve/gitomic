@@ -9,7 +9,7 @@ class IssuesController < ApplicationController
   def show
     @project = current_user.projects.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
-    @comment = @issue.comments.new
+    @comment = Comment.new(issue: @issue)
   end
 
   def create

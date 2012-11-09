@@ -1,7 +1,7 @@
 %h3 #{@issue.number} - #{@issue.title}
 
 %h4= @issue.title
-%p= @issue.body
+= GitHub::Markdown.render_gfm(@issue.body).html_safe
 
 %hr
 %ul.unstyled.comments
