@@ -14,7 +14,20 @@ describe Issue do
     it "should return a github issue" do
       github_issue.should be_instance_of(Github::Issue)
     end
+  end
 
+  describe '.update_github_issue' do
+    it "should update an issue on github" do
+      Github::Issue.should_receive(:update).and_return FactoryGirl.build(:github_issue)
+      issue.update_github_issue(user)
+    end
+  end
+
+  describe '.create_github_issue' do
+    it "should create an issue on github" do
+      Github::Issue.should_receive(:create).and_return FactoryGirl.build(:github_issue)
+      issue.create_github_issue(user)
+    end
   end
 
 end
