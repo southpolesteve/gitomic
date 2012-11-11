@@ -13,7 +13,7 @@ class Issue < ActiveRecord::Base
 
   has_many :issue_labels, :dependent => :destroy
   has_many :labels, :through => :issue_labels, :uniq => true
-  has_many :comments
+  has_many :comments, :dependent => :destroy
 
   accepts_nested_attributes_for :issue_labels, :allow_destroy => true
 
