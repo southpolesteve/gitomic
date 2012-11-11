@@ -4,7 +4,7 @@ describe Project do
   let(:user){ FactoryGirl.create(:test_user) }
   let(:project){ FactoryGirl.create(:project, creator: user) }
 
-  describe '.import_labels' do
+  describe '#import_labels' do
     before do
       Github::Label.stub list: [ FactoryGirl.build(:github_label) ]
       project.import_labels
@@ -20,7 +20,7 @@ describe Project do
     end
   end
 
-  describe '.import_team' do
+  describe '#import_team' do
     before do
       Github::Repo.stub collaborators: [ FactoryGirl.build(:github_test_user), FactoryGirl.build(:github_test_user_2) ]
       project.import_team
@@ -49,7 +49,7 @@ describe Project do
 
   end
 
-  describe '.import_issues' do
+  describe '#import_issues' do
     before do
       Github::Issue.stub list_repo: [ FactoryGirl.build(:github_issue) ]
       Github::Issue.any_instance.stub comments: []
@@ -66,7 +66,7 @@ describe Project do
     end
   end
 
-  describe '.import_github' do
+  describe '#import_github' do
     let(:user) { FactoryGirl.create(:test_user) }
     let(:project) { FactoryGirl.create(:project, creator: user, owner: "rails", name: "rails" )}
     let(:github_client) { user.github }
