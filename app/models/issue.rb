@@ -25,7 +25,7 @@ class Issue < ActiveRecord::Base
 
   delegate :owner, :name, :to => :project, :prefix => true
 
-  def github_issue(user)
+  def find_github_issue(user)
     Github::Issue.find user, project_owner, project_name, number
   end
 
@@ -34,7 +34,16 @@ class Issue < ActiveRecord::Base
   end
 
   def create_github_issue(user)
-    Github::Issue.create(user, project_owner, project_name, github_params)
+    if valid?
+      github_issue = Github::Issue.create(user, project_owner, project_name, github_params)
+      self.github_created_at = github_issue.created_at
+      self.github_id = github_issue.id
+      self.github_updated_at = github_issue.updated_at
+      self.number = github_issue.number
+      self.github_state = github_issue.state
+      self.github_url = github_issue.url
+      save
+    end
   end
 
   def github_params_changed?

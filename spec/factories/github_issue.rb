@@ -6,6 +6,7 @@ FactoryGirl.define do
     labels []
     title "Test Title"
     body "Test Body"
+    created_at { Time.now.to_s }
 
     ignore do
       owner "gitomic-test"
@@ -18,7 +19,6 @@ FactoryGirl.define do
     # url
     # assignee
     # closed_at
-    # created_at
     # id
     # updated_at
     # milestone
