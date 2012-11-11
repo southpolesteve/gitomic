@@ -38,6 +38,7 @@ group :development, :test do
   gem 'heroku_san'
   gem 'foreman'
   gem 'parallel_tests'
+  gem 'poltergeist'
 end
 
 group :test do
