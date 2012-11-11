@@ -28,12 +28,14 @@ module Github
 
     def self.update(user, project_owner, project_name, number, github_params)
       github = Github::Issues.new oauth_token: user.github_token
-      github.edit project_owner, project_name, number, github_params
+      response = github.edit project_owner, project_name, number, github_params
+      Github::Issue.new(project_owner, project_name, response)
     end
 
     def self.create(user, project_owner, project_name, github_params)
       github = Github::Issues.new oauth_token: user.github_token
-      github.create project_owner, project_name, github_params
+      response = github.create project_owner, project_name, github_params
+      Github::Issue.new(project_owner, project_name, response)
     end
 
     def self.list_repo(user, owner, repo_name, opts = {})

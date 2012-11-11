@@ -29,7 +29,7 @@ describe Github::Issue do
     end
   end
 
-  describe '.import' do
+  describe '#import' do
     let(:issue) { FactoryGirl.create(:issue) }
     let(:project) { issue.project }
     let(:imported_issue) { github_issue.import }
@@ -60,7 +60,7 @@ describe Github::Issue do
 
   end
 
-  describe '.gitomic_project' do
+  describe '#gitomic_project' do
     let(:issue) { FactoryGirl.build :github_issue }
     let!(:project) { FactoryGirl.create(:project, name: issue.repo_name, owner: issue.owner) }
 
@@ -69,13 +69,32 @@ describe Github::Issue do
     end
   end
 
-  describe '.gitomic_issue' do
+  describe '#gitomic_issue' do
     let(:issue) { FactoryGirl.create :issue }
     let(:github_issue) { FactoryGirl.build :github_issue, number: issue.number }
+    subject{ github_issue.gitomic_issue }
 
-    it "returns an existing issue" do
-      github_issue.gitomic_issue.should eq(issue)
-    end
+    it{ should eq(issue) }
   end
 
+  describe '.create' do
+    let(:project) { FactoryGirl.build :project }
+    subject{ Github::Issue.create project.creator, project.owner, project.name, title: 'Test', body: 'test' }
+
+    it("",:vcr){ should be_instance_of(Github::Issue) }
+  end
+
+  describe '.update' do
+    let(:issue) { FactoryGirl.build :issue }
+    subject{ Github::Issue.update issue.project.creator, issue.project_owner, issue.project_name, 1, title: 'Test', body: 'changed' }
+
+    it("",:vcr){ should be_instance_of(Github::Issue) }
+  end
+
+  describe '.find' do
+    let(:issue) { FactoryGirl.build :issue }
+    subject{ Github::Issue.find issue.project.creator, issue.project_owner, issue.project_name, 1 }
+
+    it("",:vcr){ should be_instance_of(Github::Issue) }
+  end
 end
