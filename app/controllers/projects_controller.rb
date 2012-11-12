@@ -24,6 +24,13 @@ class ProjectsController < ApplicationController
     @new_issue = @project.issues.new
   end
 
+  def destroy
+    @project = current_user.projects.find(params[:id])
+    @project.destroy
+    flash[:success] = "Project has been destroyed. All data related to this project has been removed from Gitomic"
+    redirect_to projects_path
+  end
+
   def settings
     @project = current_user.projects.find(params[:id])
   end

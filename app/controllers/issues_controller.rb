@@ -33,14 +33,8 @@ class IssuesController < ApplicationController
     @project = current_user.projects.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
     @issue.attributes = issue_params
-    if params[:issue][:label_ids]
-      params[:issue][:label_ids].each do |id|
-        label = @project.labels.find(id)
-        @issue.labels << label unless @issue.labels.include?(label)
-      end
-    end
-    @issue.update_github_issue(current_user) if @issue.valid?
-    if @issue.save
+    @issue.update_labels(params[:issue][:label_ids])
+    if @issue.update_github_issue(current_user)
       respond_to do |format|
         format.html do
           flash[:notice] = "Issue updated!"

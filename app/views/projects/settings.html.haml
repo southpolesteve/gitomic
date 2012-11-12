@@ -7,4 +7,5 @@
     = user.github_login
     = link_to "invite(not working yet)", invite_user_path(user)
 
-%p Should probably add some settings here
+%p
+  = link_to "Destroy Project", project_path(@project), method: 'delete', class: 'btn btn-danger'

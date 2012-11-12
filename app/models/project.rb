@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
   has_many :project_memberships, :dependent => :destroy
   has_many :users, :through => :project_memberships, :uniq => true
 
+  after_create :add_creator_to_users
     
   def import_github
     import_labels
@@ -58,6 +59,10 @@ class Project < ActiveRecord::Base
 
   def create_github_hook
     #WIP
+  end
+
+  def add_creator_to_users
+    creator.projects << self
   end
 
 end

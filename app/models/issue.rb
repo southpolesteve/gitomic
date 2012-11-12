@@ -30,7 +30,16 @@ class Issue < ActiveRecord::Base
   end
 
   def update_github_issue(user)
-    Github::Issue.update(user, project_owner, project_name, number, github_params)
+    if valid?
+      github_issue = Github::Issue.update(user, project_owner, project_name, number, github_params)
+      self.github_created_at = github_issue.created_at
+      self.github_id = github_issue.id
+      self.github_updated_at = github_issue.updated_at
+      self.number = github_issue.number
+      self.github_state = github_issue.state
+      self.github_url = github_issue.url
+      save
+    end
   end
 
   def create_github_issue(user)
@@ -43,6 +52,13 @@ class Issue < ActiveRecord::Base
       self.github_state = github_issue.state
       self.github_url = github_issue.url
       save
+    end
+  end
+
+  def update_labels(label_ids)
+    label_ids.each do |id|
+      label = project.labels.find(id)
+      labels << label unless labels.include?(label)
     end
   end
 
