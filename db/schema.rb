@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121106014202) do
+ActiveRecord::Schema.define(:version => 20121113235354) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -47,12 +47,12 @@ ActiveRecord::Schema.define(:version => 20121106014202) do
     t.integer  "project_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
-    t.string   "user_id"
     t.string   "github_state"
     t.integer  "priority"
     t.integer  "list_id"
     t.string   "github_url"
     t.integer  "assignee_id"
+    t.integer  "user_id"
   end
 
   add_index "issues", ["list_id"], :name => "index_issues_on_list_id"
