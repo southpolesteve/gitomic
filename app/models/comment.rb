@@ -4,19 +4,12 @@ class Comment < ActiveRecord::Base
 
   validates :body, :user_id, :presence => true
 
-  before_create :create_github_comment
-  before_update :update_github_comment
-
   delegate :owner, :name, :to => :project, :prefix => true
   delegate :number, :to => :issue, :prefix => true
 
-  def github_comment
-  end
-
   def create_github_comment
-    if on_github?
-      Github::Comment.create(user, project_owner, project_name, issue_number, github_data)
-    end
+    @github_comment = Github::Comment.create(user, project_owner, project_name, issue_number, github_data)
+    save_github_response
   end
 
   def update_github_comment
@@ -32,8 +25,11 @@ class Comment < ActiveRecord::Base
     { body: body }
   end
 
-  def on_github?
-    github_id.present?
+  def save_github_response
+    self.github_created_at = @github_comment.created_at
+    self.github_id = @github_comment.id
+    self.github_updated_at = @github_comment.updated_at
+    save
   end
   
 end

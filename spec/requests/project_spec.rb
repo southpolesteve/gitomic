@@ -5,7 +5,7 @@ describe "destroying a project" do
   before do
     project = FactoryGirl.create :project
     issue = FactoryGirl.create :issue, project: project 
-    issue.comments << Comment.create!(body: 'test', user: project.creator)
+    issue.comments.create!(body: 'test', user: project.creator)
     login project.creator
     visit settings_project_path(project)
     click_link "Destroy"
