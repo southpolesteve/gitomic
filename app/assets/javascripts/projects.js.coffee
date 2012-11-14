@@ -74,15 +74,11 @@ class Issue
     data['issue']["priority_position"] = @position()
     data['issue']['assignee_id'] = @assignee_id()
     data['issue']['label_ids'] = @label_ids()
-    data['issue']['list_id'] = @list_id()
     $.ajax({
       type: 'PUT',
       url: url,
       data: data,
     });
-
-  list_id: ->
-    @element.parent().data('id')
 
   project_id: ->
     @element.parent().data('project_id')
