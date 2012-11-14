@@ -14,6 +14,12 @@ module Github
       self.issue_number = issue_number
     end
 
+    def self.create(user, project_owner, project_name, number, github_params)
+      github = Github::Issues::Comments.new oauth_token: user.github_token
+      response = github.create project_owner, project_name, number, github_params
+      Github::Comment.new(project_owner, project_name, number, response)
+    end
+
     def import
       issue = gitomic_project.issues.find_by_number(issue_number)
       issue.comments.create!(body: body, user: user.gitomic_user )
