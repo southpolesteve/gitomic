@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.github.com/repos/gitomic-test/gitomic-test/issues?access_token=4014890907c8ef103452e391f670ef395a3d47e6
+    uri: https://api.github.com/orgs/gitomic-test-organization/repos?access_token=4014890907c8ef103452e391f670ef395a3d47e6
     body:
       encoding: US-ASCII
       string: ''
@@ -30,7 +30,7 @@ http_interactions:
         bmdpbng=
       !binary "ZGF0ZQ==":
       - !binary |-
-        RnJpLCAwOSBOb3YgMjAxMiAwNTowMToyNyBHTVQ=
+        V2VkLCAxNCBOb3YgMjAxMiAwMzozMDo0MCBHTVQ=
       !binary "Y29udGVudC10eXBl":
       - !binary |-
         YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
@@ -43,33 +43,33 @@ http_interactions:
       !binary "c3RhdHVz":
       - !binary |-
         MjAwIE9L
-      !binary "eC1vYXV0aC1zY29wZXM=":
+      !binary "eC1jb250ZW50LXR5cGUtb3B0aW9ucw==":
       - !binary |-
-        Z2lzdCwgcmVwbywgdXNlcg==
-      !binary "dmFyeQ==":
+        bm9zbmlmZg==
+      !binary "bGFzdC1tb2RpZmllZA==":
       - !binary |-
-        QWNjZXB0LCBBdXRob3JpemF0aW9uLCBDb29raWU=
+        V2VkLCAxMCBPY3QgMjAxMiAwMzozOTo1MSBHTVQ=
+      !binary "eC1hY2NlcHRlZC1vYXV0aC1zY29wZXM=":
+      - !binary |-
+        cmVwbzpzdGF0dXMsIHB1YmxpY19yZXBvLCByZXBvLCBkZWxldGVfcmVwbw==
       !binary "eC1naXRodWItbWVkaWEtdHlwZQ==":
       - !binary |-
         Z2l0aHViLmJldGE=
       !binary "ZXRhZw==":
       - !binary |-
-        IjQxZmQ3ZTc5ODc2ZTQxNzIxMmYxNTk0YTBlOWE3MjFmIg==
+        Ijk2MTc5YmQyYWJjYTA1OTc4OWFmYzU0NTk0MGU1Y2MyIg==
       !binary "eC1yYXRlbGltaXQtcmVtYWluaW5n":
       - !binary |-
-        NDk5Mw==
-      !binary "bGFzdC1tb2RpZmllZA==":
+        NDk5MQ==
+      !binary "eC1vYXV0aC1zY29wZXM=":
       - !binary |-
-        RnJpLCAwOSBOb3YgMjAxMiAwNDo1NDo0MSBHTVQ=
-      !binary "eC1hY2NlcHRlZC1vYXV0aC1zY29wZXM=":
-      - !binary |-
-        cmVwbywgcHVibGljX3JlcG8=
-      !binary "eC1jb250ZW50LXR5cGUtb3B0aW9ucw==":
-      - !binary |-
-        bm9zbmlmZg==
+        Z2lzdCwgcmVwbywgdXNlcg==
       !binary "Y2FjaGUtY29udHJvbA==":
       - !binary |-
-        cHJpdmF0ZSwgcy1tYXhhZ2U9NjAsIG1heC1hZ2U9NjA=
+        cHJpdmF0ZSwgbWF4LWFnZT02MCwgcy1tYXhhZ2U9NjA=
+      !binary "dmFyeQ==":
+      - !binary |-
+        QWNjZXB0LCBBdXRob3JpemF0aW9uLCBDb29raWU=
       !binary "eC1yYXRlbGltaXQtbGltaXQ=":
       - !binary |-
         NTAwMA==
@@ -79,18 +79,19 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAAA+1UTYvbMBD9K4ugN9uyZNdxDKW3/oI9dVmCLE8cUX24lrRQ
-        Qv57R/Fm4xS6obDH4os8Gr038+ZJT0citfMw7EQgnY1aZ0TOIMJrhPCS8ZyV
-        OWOPZdWxuuP8O8EcZwzY4ElXZqR3wy/SkUfw4UF5H+HhHMmIURpjzsIFOnqY
-        SXck2o3K4pFRBWeUzAOmYf44ixcRxLxTA26C3LJqU9cgG7ktW9k0wGXPajaI
-        QQ6bDR6Is8bEQwiT7ygVkyoQ8RD7AuujiczTPygSMq9a3lRVRl7ZblE8yDhD
-        canlDLUk0nsVfR2+vNXC67aAQvwQRqjCQqDCewh+VeAn/k0ZMYLHxYVtvc5T
-        A3nNy2KyIzllJKigUcq10EsoQwmM3t32sVJircGNIPQ8Lk8Zammj6dN02B1Z
-        Z5jcrax/hYzT8I6TqjY5aULP7Wb4iWWgA49kEkEellYWO15bW/4Htd9f91EW
-        H5AEZXETWARME958LnnNsRMUXY0WcPu/6c634p9Np0UPGu/5E74UTjs0CNlL
-        vuXbe9fvnk8WYNrHMZlPmDTC9HPKrkxt3TfQfxAT2IOwEtK7dWVcB9fM0KTv
-        g5iVfREaffnW5yVwej49/wZXylWKgwUAAA==
+        H4sIAAAAAAAAA61U0Y6bMBD8F0t9I2A4cgeWqvapX9CnVhXawxuwAjayzUW6
+        6P69awgJ0h2pVJ3EwyJ7Z4adWX6fmRlQV8q5ER0TacSG0bUoK/BMsIyn2S7l
+        9PzkD+KhFPv0F4tYC646qaNiwtsRI9Yra42tRtsxoceui9jB2CPB8YjVFsFv
+        4uXlhGd6HKDBpTvgL4pmBnPSaJk4M3gBDxcq1no/OJEkDuvRYtzY+TSuTZ/M
+        ZSLzVBa1LIsD588Zz7EsOC/LAutDkWdP+E1+XVAgy4sYYzhCDyrW6BNwDr2L
+        G+Xb8Tmgfsl+qJ6EOioWtnW9M7bZ5RmPB93Qdy1XKiVpmP+SQg3TBK+fBYNa
+        cSejQ+sSEmN6Ve88Oh/oQKtX8Mpoag802T7bp495xDrTKE1o2w1vZDbaniZN
+        7eTWmbzvSMA88pCDpQbZB6xwQE0n8HVLWiZ/3Yuejb/Kvo1rW+y7k53FwYQo
+        +L77TLxVuqvajJpSTRmX6GqrhmlsghFt3RmNn8YbXAtuDvJO9OdVopsXWqoo
+        yv8/vAupc+0N8PsNTmzm4GMvFjj1SmtJPoedlLSGnQFJzs8ZmdZ8mStdCu9M
+        HKBz9FdYYrI670A342rR7+Y9JOJO3j+WTWPX0JPkd7lfEjZYRf8QunGRGZbm
+        Md2nT5yCcaAFqDYArpu2wfz25y8fLtblTgUAAA==
     http_version: !binary |-
       MS4x
-  recorded_at: Fri, 09 Nov 2012 05:01:33 GMT
+  recorded_at: Wed, 14 Nov 2012 03:30:42 GMT
 recorded_with: VCR 2.2.5

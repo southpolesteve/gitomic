@@ -26,5 +26,4 @@ describe "destroying a project" do
   it "should delete the comment" do
     Comment.all.should be_empty
   end
-
 end

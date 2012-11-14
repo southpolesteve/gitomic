@@ -6,6 +6,7 @@ describe Github::Issue do
 
   describe '.new' do
     use_vcr_cassette
+    
     let(:issue) { issues.first }
 
     it "returns an issue with an assignee" do
@@ -22,15 +23,19 @@ describe Github::Issue do
   end
 
   describe '.list_repo' do
+    use_vcr_cassette
+
     let(:project) { FactoryGirl.create :project}
     let(:issue) { issues.first }
 
-    it "returns a array of repo issues", :vcr do
+    it "returns a array of repo issues" do
       issues.should contain_only_instances_of(Github::Issue)
     end
   end
 
   describe '#import' do
+    use_vcr_cassette
+
     let(:issue) { FactoryGirl.create(:issue) }
     let(:project) { issue.project }
     let(:imported_issue) { github_issue.import }
@@ -39,22 +44,22 @@ describe Github::Issue do
       Github::Issue.any_instance.stub comments: []
     end
 
-    context "an issue does not exist" do
+    context "when an issue does not exist" do
       let(:github_issue) { FactoryGirl.build(:github_issue, number: issue.number+1 )}
 
-      it "should return a saved issue", :vcr do
+      it "should return a saved issue" do
         imported_issue.should be_instance_of(Issue)
         imported_issue.should be_persisted
       end
 
-      it "should add the issue to the project", :vcr do
+      it "should add the issue to the project" do
         project.issues.should include(imported_issue)
       end
     end
 
     context "an issue already exists" do
       let(:github_issue) { FactoryGirl.build(:github_issue, number: issue.number )}
-      it "should return the existing issue", :vcr do
+      it "should return the existing issue" do
         imported_issue.should == issue
       end
     end
@@ -79,23 +84,29 @@ describe Github::Issue do
   end
 
   describe '.create' do
+    use_vcr_cassette
+
     let(:project) { FactoryGirl.build :project }
     subject{ Github::Issue.create project.creator, project.owner, project.name, title: 'Test', body: 'test' }
 
-    it("",:vcr){ should be_instance_of(Github::Issue) }
+    it { should be_instance_of(Github::Issue) }
   end
 
   describe '.update' do
+    use_vcr_cassette
+
     let(:issue) { FactoryGirl.build :issue }
     subject{ Github::Issue.update issue.project.creator, issue.project_owner, issue.project_name, 1, title: 'Test', body: 'changed' }
 
-    it("",:vcr){ should be_instance_of(Github::Issue) }
+    it { should be_instance_of(Github::Issue) }
   end
 
   describe '.find' do
+    use_vcr_cassette
+
     let(:issue) { FactoryGirl.build :issue }
     subject{ Github::Issue.find issue.project.creator, issue.project_owner, issue.project_name, 1 }
 
-    it("",:vcr){ should be_instance_of(Github::Issue) }
+    it { should be_instance_of(Github::Issue) }
   end
 end
