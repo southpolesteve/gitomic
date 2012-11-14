@@ -4,6 +4,13 @@ FactoryGirl.define do
     name "gitomic-test"
     org false
     creator { FactoryGirl.create(:test_user) }
+
+    factory :imported_project do
+      imported_at Time.now
+      issues_imported_at Time.now
+      labels_imported_at Time.now
+    end
+
   end
 
   factory :project_rails do
