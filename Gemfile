@@ -39,6 +39,7 @@ group :development, :test do
   gem 'foreman'
   gem 'parallel_tests'
   gem 'poltergeist'
+  gem "selenium-webdriver"
 end
 
 group :test do
@@ -47,6 +48,7 @@ group :test do
   gem "fakeweb"
   gem "vcr"
   gem 'simplecov', :require => false
+  gem 'database_cleaner'
 end
 
 
@@ -56,5 +58,6 @@ group :development do
   gem 'quiet_assets'
   gem "hpricot"
   gem "ruby_parser"
+  gem 'brakeman'
 end
 
