@@ -5,17 +5,18 @@ describe Github::Issue do
   let(:issues) { Github::Issue.list_repo user, "gitomic-test", "gitomic-test" }
 
   describe '.new' do
+    use_vcr_cassette
     let(:issue) { issues.first }
 
-    it "returns an issue with an assignee", :vcr do
+    it "returns an issue with an assignee" do
       issue.assignee.should be_instance_of(Github::User)
     end
 
-    it "returns an issue with a creating user", :vcr do
+    it "returns an issue with a creating user" do
       issue.user.should be_instance_of(Github::User)
     end
 
-    it "returns an issue with labels", :vcr do
+    it "returns an issue with labels" do
       issue.labels.should contain_only_instances_of(Github::Label)
     end
   end

@@ -8,6 +8,7 @@ require 'email_spec'
 require 'rspec/autorun'
 require 'capybara/rails'
 require 'capybara/poltergeist'
+require 'database_cleaner'
 Capybara.javascript_driver = :poltergeist
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -15,6 +16,9 @@ Capybara.javascript_driver = :poltergeist
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
+
+  Rails.logger.level = 1
+  
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
   # ## Mock Framework
@@ -31,7 +35,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
@@ -44,19 +48,39 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, :js => true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
   config.include IntegrationSpecHelper, :type => :request
+  config.extend VCR::RSpec::Macros
 
   OmniAuth.config.test_mode = true
   OmniAuth.config.add_mock :github, {"provider"=>"github",
                                      "uid"=>"2382633",
                                      "info"=>
-                                      {"name"=>"Gitomic Test",
+                                      {"name"=>"Gitomic Test User",
                                        "email"=>"steve+github@gitomic.com",
                                        "image"=>
                                         "https://secure.gravatar.com/avatar/ec913744ec6c908c66e2cb141dadcd77?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"},
                                      "credentials"=>{:token=>"035bf79dcdfebaf681b72c72e60aff551a8c6d87"},
                                      "extra"=>{"raw_info"=>{:login=>"gitomic-test"}}}
-
 
 
 end
