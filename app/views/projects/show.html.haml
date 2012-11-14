@@ -28,6 +28,8 @@
         = render @project.issues.not_on_list.rank(:priority)
     .span7
       #issue
+        - if @issue
+          = render :template => 'issues/show'
 
 - else
   %h1 #{@project.owner}/#{@project.name}

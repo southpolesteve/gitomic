@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
   has_many :lists, :class_name => 'Label', :conditions => ['list = ?' , true]
   has_many :project_memberships, :dependent => :destroy
   has_many :users, :through => :project_memberships, :uniq => true
+  has_many :comments, :through => :issues
 
   after_create :add_creator_to_users
     

@@ -4,7 +4,8 @@ class Issue < ActiveRecord::Base
   attr_accessible :body, :closed_at, :github_created_at, 
                   :github_id, :github_updated_at, :milestone, 
                   :number, :state, :title, :user, :priority_position,
-                  :assignee_id, :issue_labels_attributes, :list_id
+                  :assignee_id, :issue_labels_attributes, :list_id,
+                  :label_ids
 
   belongs_to :project
   belongs_to :user
@@ -31,40 +32,21 @@ class Issue < ActiveRecord::Base
 
   def update_github_issue(user)
     if valid?
-      github_issue = Github::Issue.update(user, project_owner, project_name, number, github_params)
-      self.github_created_at = github_issue.created_at
-      self.github_id = github_issue.id
-      self.github_updated_at = github_issue.updated_at
-      self.number = github_issue.number
-      self.github_state = github_issue.state
-      self.github_url = github_issue.url
-      save
+      @github_issue = Github::Issue.update(user, project_owner, project_name, number, github_params)
+      save_github_response
     end
   end
 
   def create_github_issue(user)
     if valid?
-      github_issue = Github::Issue.create(user, project_owner, project_name, github_params)
-      self.github_created_at = github_issue.created_at
-      self.github_id = github_issue.id
-      self.github_updated_at = github_issue.updated_at
-      self.number = github_issue.number
-      self.github_state = github_issue.state
-      self.github_url = github_issue.url
-      save
-    end
-  end
-
-  def update_labels(label_ids)
-    label_ids.each do |id|
-      label = project.labels.find(id)
-      labels << label unless labels.include?(label)
+      @github_issue = Github::Issue.create(user, project_owner, project_name, github_params)
+      save_github_response
     end
   end
 
   def github_params_changed?
-    github_params.each do |k,v|
-      return true if self.send("#{k}_changed?")
+    [:body, :title, :assignee_id, :labels].each do |field|
+      return true if self.send("#{field}_changed?")
     end
     false
   end
@@ -76,5 +58,18 @@ class Issue < ActiveRecord::Base
       :labels => labels.map(&:name),
     }
   end
+
+  private
+
+  def save_github_response
+    self.github_created_at = @github_issue.created_at
+    self.github_id = @github_issue.id
+    self.github_updated_at = @github_issue.updated_at
+    self.number = @github_issue.number
+    self.github_state = @github_issue.state
+    self.github_url = @github_issue.url
+    save
+  end
+
 
 end

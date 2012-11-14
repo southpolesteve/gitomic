@@ -9,7 +9,9 @@ class IssuesController < ApplicationController
   def show
     @project = current_user.projects.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
+    @new_issue = @project.issues.new
     @comment = Comment.new(issue: @issue)
+    render 'projects/show', layout: 'application' unless request.xhr?
   end
 
   def create
@@ -33,7 +35,6 @@ class IssuesController < ApplicationController
     @project = current_user.projects.find(params[:project_id])
     @issue = @project.issues.find(params[:id])
     @issue.attributes = issue_params
-    @issue.update_labels(params[:issue][:label_ids])
     if @issue.update_github_issue(current_user)
       respond_to do |format|
         format.html do
@@ -56,7 +57,7 @@ class IssuesController < ApplicationController
   private
 
   def issue_params
-    params.require(:issue).permit(:title, :body, :state, :priority_position, :assignee_id, :list_id)
+    params.require(:issue).permit(:title, :body, :state, :priority_position, :assignee_id, :label_ids)
   end
 
 end
