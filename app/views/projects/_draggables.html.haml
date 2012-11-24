@@ -1,0 +1,8 @@
+.span2.draggables
+  %h3 Team
+  #team-members
+  = render @project.users
+  %h3 Labels
+  = render @project.labels
+  %h3 Admin
+  = link_to "Project Settings", settings_project_path(@project)
