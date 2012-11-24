@@ -51,7 +51,7 @@ class Project < ActiveRecord::Base
   end
 
   def create_github_hook
-    Github::Hook.create creator, owner, name
+    Github::Hook.create(creator, owner, name) unless Rails.env.development?
   end
 
   def add_creator_to_users
