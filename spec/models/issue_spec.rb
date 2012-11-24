@@ -3,19 +3,6 @@ require 'spec_helper'
 describe Issue do
   let(:user) { FactoryGirl.build(:test_user) }
 
-  describe '#find_github_issue' do
-    let(:github_issue) { issue.find_github_issue(user) }
-    let(:issue) { FactoryGirl.build(:issue, number: 1) }
-
-    before do
-      Github::Issue.stub find: FactoryGirl.build(:github_issue)
-    end
-
-    it "should return a github issue" do
-      github_issue.should be_instance_of(Github::Issue)
-    end
-  end
-
   describe '#update_github_issue' do
     let(:issue) { FactoryGirl.build(:issue, number: 1) }
 
