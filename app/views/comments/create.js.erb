@@ -1,1 +1,4 @@
 $("ul.comments").append("<%= escape_javascript(render 'comment', :comment => @comment) %>");
+
+// Clear the comment text box
+$("#comment_body").val("")
