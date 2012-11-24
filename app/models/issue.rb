@@ -26,10 +26,6 @@ class Issue < ActiveRecord::Base
 
   delegate :owner, :name, :to => :project, :prefix => true
 
-  def find_github_issue(user)
-    Github::Issue.find user, project_owner, project_name, number
-  end
-
   def update_github_issue(user)
     if valid?
       @github_issue = Github::Issue.update(user, project_owner, project_name, number, github_params)
@@ -42,13 +38,6 @@ class Issue < ActiveRecord::Base
       @github_issue = Github::Issue.create(user, project_owner, project_name, github_params)
       save_github_response
     end
-  end
-
-  def github_params_changed?
-    [:body, :title, :assignee_id, :labels].each do |field|
-      return true if self.send("#{field}_changed?")
-    end
-    false
   end
 
   def github_params

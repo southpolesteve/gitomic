@@ -11,11 +11,12 @@ class Project < ActiveRecord::Base
   has_many :comments, :through => :issues
 
   after_create :add_creator_to_users
-    
+
   def import_github
     import_labels
     import_team
     import_issues
+    create_github_hook
     update_attribute(:imported_at, Time.now)
   end
 
@@ -34,7 +35,7 @@ class Project < ActiveRecord::Base
   end
 
   def import_team
-    github_team.each{ |github_user| github_user.import(owner, name) }
+    github_collaborators.each{ |github_user| github_user.import(owner, name) }
   end
 
   def github_labels
@@ -49,17 +50,8 @@ class Project < ActiveRecord::Base
     Github::Repo.collaborators creator, owner, name
   end
 
-  # Is this method even necessary?
-  def github_org_members
-    Github::Org.members creator, owner
-  end
-
-  def github_team
-    github_collaborators #Different if org? See .github_org_members
-  end
-
   def create_github_hook
-    #WIP
+    Github::Hook.create creator, owner, name
   end
 
   def add_creator_to_users
