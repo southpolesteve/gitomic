@@ -13,7 +13,7 @@
           .modal-body
             = render 'issues/form', project: @project, issue: @new_issue
   .row-fluid
-    = render 'draggables'
+    = render 'projects/draggables'
     .span3
       %h3 Issues
       %ul.list.sortable.unstyled{:data => { :model => '', :project_id => @project.id,  :id => ''}}

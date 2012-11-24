@@ -11,7 +11,6 @@ class ProjectsController < ApplicationController
     @project = current_user.owned_projects.where(owner: owner, name: name).first_or_create
     if @project
       @project.import_github_async
-      current_user.projects << @project
       redirect_to @project
     else
       flash[:error] = "There was an error importing that project to Gitomic"

@@ -28,7 +28,15 @@ describe Github::User do
         imported_user.should == user
       end
     end
+  end
 
+  describe '#gitomic_user' do
+    let(:github_user){ FactoryGirl.build(:github_test_user) }
+    let!(:user) { FactoryGirl.create :test_user }
+
+    it "should return a user" do
+      github_user.gitomic_user.should == user
+    end
   end
 
 end

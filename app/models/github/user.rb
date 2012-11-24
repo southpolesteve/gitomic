@@ -25,6 +25,8 @@ module Github
       ::User.find_or_initialize_by_github_login(login)
     end
 
+    private
+
     def to_s
       "#<#{self.class} login:#{login}>"
     end
