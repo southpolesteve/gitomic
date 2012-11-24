@@ -31,7 +31,7 @@ describe Project do
         project.users.should have_at_least(2).items
         project.users.should all_be_persisted
       end
-    end 
+    end
 
     context 'for a org repo' do
       let(:project){ FactoryGirl.create(:org_project, creator: user)}
@@ -41,12 +41,6 @@ describe Project do
         project.users.should all_be_persisted
       end
     end
-
-    # TODO
-      # it "should update the team imported time", :vcr do
-    #   project.team_imported_at.should_not be_nil
-    # end
-
   end
 
   describe '#import_issues' do
@@ -74,14 +68,21 @@ describe Project do
     let(:open_issues_count) { github_client.repos.get("rails", "rails").open_issues_count }
     let(:labels_count) { github_client.issues.labels.list("rails","rails").count }
 
-    
-    # This test is extremely slow (2min, 300 open issues, 25 collabs) but it passes
+
+    # This test is extremely slow (2 minutes long, 300 open issues, 25 collabs) but it passes
     # it "should import a large project", :vcr do
     #   project.import_github
     #   project.users.count.should == collaborator_count
     #   project.issues.count.should == open_issues_count
     #   project.labels.count.should == labels_count
     # end
+  end
+
+  describe '#create_github_hook' do
+    it 'should create a hook on github' do
+      Github::Hook.should_receive(:create)
+      project.create_github_hook
+    end
   end
 
 end
