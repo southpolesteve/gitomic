@@ -33,7 +33,7 @@ describe "creating an issue" do
     login user
     visit project_path(project)
     click_on "New Issue"
-    sleep(5) #HACK find a better way
+    wait_until { page.find('.modal').visible? }
     within '.modal' do
       fill_in "Title", :with => 'A test issue'
       click_on "Create Issue"
