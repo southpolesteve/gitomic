@@ -4,14 +4,11 @@ Gitomic::Application.routes.draw do
 
   resources :issue_labels
   resources :labels
-  resources :projects do 
+  resources :projects do
     resources :issues do
       resources :comments
     end
     resources :labels do
-      member do
-        post 'make_list'
-      end
     end
     collection do
       get 'import'

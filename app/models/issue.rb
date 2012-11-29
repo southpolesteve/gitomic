@@ -1,15 +1,14 @@
 class Issue < ActiveRecord::Base
   include RankedModel
 
-  attr_accessible :body, :closed_at, :github_created_at, 
-                  :github_id, :github_updated_at, :milestone, 
+  attr_accessible :body, :closed_at, :github_created_at,
+                  :github_id, :github_updated_at, :milestone,
                   :number, :state, :title, :user, :priority_position,
                   :assignee_id, :issue_labels_attributes, :list_id,
                   :label_ids
 
   belongs_to :project
   belongs_to :user
-  belongs_to :list, :class_name => 'Label'
   belongs_to :assignee, :class_name => 'User'
 
   has_many :issue_labels, :dependent => :destroy
@@ -18,9 +17,7 @@ class Issue < ActiveRecord::Base
 
   accepts_nested_attributes_for :issue_labels, :allow_destroy => true
 
-  ranks :priority, :with_same => [:project_id, :list_id]
-
-  scope :not_on_list, where(:list_id => nil)
+  ranks :priority, :with_same => [:project_id]
 
   validates :title, :presence => true
 

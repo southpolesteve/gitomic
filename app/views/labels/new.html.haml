@@ -2,6 +2,3 @@
 = simple_form_for [@project, @label] do |f|
   = f.input :name
   = f.button :submit
-
-- @project.labels.select{ |l| l.id != nil }.each do |label|
-  %p= link_to label.name, make_list_project_label_path(@project, label), :method => :post unless label.list

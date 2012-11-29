@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121114035149) do
+ActiveRecord::Schema.define(:version => 20121129005936) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -52,13 +52,11 @@ ActiveRecord::Schema.define(:version => 20121114035149) do
     t.datetime "updated_at",        :null => false
     t.string   "github_state"
     t.integer  "priority"
-    t.integer  "list_id"
     t.string   "github_url"
     t.integer  "assignee_id"
     t.integer  "user_id"
   end
 
-  add_index "issues", ["list_id"], :name => "index_issues_on_list_id"
   add_index "issues", ["project_id"], :name => "index_issues_on_project_id"
   add_index "issues", ["user_id"], :name => "index_issues_on_user_id"
 
@@ -68,18 +66,9 @@ ActiveRecord::Schema.define(:version => 20121114035149) do
     t.integer  "project_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.boolean  "list"
   end
 
   add_index "labels", ["project_id"], :name => "index_labels_on_project_id"
-
-  create_table "lists", :force => true do |t|
-    t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "lists", ["project_id"], :name => "index_lists_on_project_id"
 
   create_table "project_memberships", :force => true do |t|
     t.integer  "user_id"

@@ -17,7 +17,7 @@
     .span3
       %h3 Issues
       %ul.list.sortable.unstyled{:data => { :model => '', :project_id => @project.id,  :id => ''}}
-        = render @project.issues.not_on_list.rank(:priority)
+        = render @project.issues.rank(:priority)
     .span7
       #issue
         - if @issue
