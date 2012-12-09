@@ -24,6 +24,8 @@ Gitomic::Application.routes.draw do
     end
   end
 
+  resources :webhooks
+
   root :to => "home#index"
 
   match "/signout" => "sessions#destroy", :as => :signout
